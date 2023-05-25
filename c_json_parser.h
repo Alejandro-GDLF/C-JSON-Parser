@@ -23,9 +23,11 @@ typedef struct {
     size_t entries_length;
 } JSONObject;
 
+typedef JSONEntry* JSONRoot;
+
 
 // Functions
-JSONObject* parse_string(char* string_to_parse, size_t string_to_parse_length);
+JSONRoot* parse_string(char* string_to_parse, size_t string_to_parse_length);
 
 void* get_value(JSONObject* json_object, char* field_name, JSONType* value_type, void* error);
 

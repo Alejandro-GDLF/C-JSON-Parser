@@ -29,15 +29,15 @@ typedef struct
 typedef JSONEntry *JSONRoot;
 
 // Functions
-JSONRoot *parse_string(char *string_to_parse, size_t string_to_parse_length);
+JSONRoot* parse_string(char* string_to_parse, size_t string_to_parse_length);
 
-void *get_value(JSONObject *json_object, char *field_name, JSONType *value_type, void *error);
+void* get_value(JSONObject* json_object, char* field_name, JSONType* value_type, void* error);
 
-// Specified functions
-int *get_integer(JSONObject *json_object, char *field_name, void *error);
-float *get_float(JSONObject *json_object, char *field_name, void *error);
-char *get_boolean(JSONObject *json_object, char *field_name, void *error);
-char *get_string(JSONObject *json_object, char *field_name, void *error);
-JSONObject *get_json_object(JSONObject *json_object, char *field_name, void *error);
+// Specific functions
+int* get_integer(JSONObject* json_object, char* field_name, void* error);
+float* get_float(JSONObject* json_object, char* field_name, void* error);
+char* get_boolean(JSONObject* json_object, char* field_name, void* error);
+char* get_string(JSONObject* json_object, char* field_name, void* error);
+JSONObject* get_json_object(JSONObject* json_object, char* field_name, void* error);
 
 #endif

@@ -3,7 +3,14 @@
 
 #include "c_json_parser.h"
 
-char ENCLOSING_FIELDS_CHAR = '"';
+const char STRING_ENCAPSULATOR = '"';
+
+char* parse_string(char* string_to_parse, size_t string_to_parse_length) {
+    int substr_length = strchr(string_to_parse + 1, (int)STRING_ENCAPSULATOR );
+    char* string = (char*) malloc(substr_length + 1);
+
+    strncat(string, string_to_parse + 1, substr_length);
+}
 
 void* parse(char* string_to_parse, size_t string_to_parse_length) {
     void* root;
@@ -28,7 +35,7 @@ void* parse(char* string_to_parse, size_t string_to_parse_length) {
             continue;
         }
 
-        else if( current_char == '"'){
+        else if( current_char == STRING_ENCAPSULATOR){
             root = parse_string( string_to_parse + i, string_to_parse_length - i);
             continue;
         }

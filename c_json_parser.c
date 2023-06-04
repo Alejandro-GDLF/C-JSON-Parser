@@ -5,11 +5,28 @@
 
 const char STRING_ENCAPSULATOR = '"';
 
-char* parse_string(char* string_to_parse, size_t string_to_parse_length) {
-    int substr_length = strchr(string_to_parse + 1, (int)STRING_ENCAPSULATOR );
-    char* string = (char*) malloc(substr_length + 1);
+/********************* parse_string *********************
+ * @brief parses a substring inside a char array encapsulated inside " chars
+ * 
+ * @param substring substring extracted
+ * @param substr_length length of the substring
+ * @param string_to_parse pointer to a " character that contains a string
+ * @param string_to_parse_length length of the string passed
+ * 
+ * @return 0 success
+ * @return -1 error has occured
+*/
 
-    strncat(string, string_to_parse + 1, substr_length);
+char* parse_string(char* substring, int* substr_length, char* string_to_parse, size_t string_to_parse_length) {
+    if( string_to_parse[0] != STRING_ENCAPSULATOR ) return -1;
+
+    *substr_length = strchr(string_to_parse + 1, (int) STRING_ENCAPSULATOR ) - string_to_parse;
+    substring = (char*) malloc((*substr_length) + 1);
+
+    strncpy(substring, string_to_parse + 1, (*substr_length) - 1);
+    substring[*substr_length] = '\0';
+
+    return 0;
 }
 
 void* parse(char* string_to_parse, size_t string_to_parse_length) {

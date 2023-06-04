@@ -5,7 +5,7 @@
 
 const char STRING_ENCAPSULATOR = '"';
 
-/********************* parse_string *********************
+/********************* parse_string *******************//**
  * @brief parses a substring inside a char array encapsulated inside " chars
  * 
  * @param substring substring extracted
@@ -15,9 +15,9 @@ const char STRING_ENCAPSULATOR = '"';
  * 
  * @return 0 success
  * @return -1 error has occured
-*/
+*//********************************************************/
 
-char* parse_string(char* substring, int* substr_length, char* string_to_parse, size_t string_to_parse_length) {
+int parse_string(char* substring, int* substr_length, char* string_to_parse, size_t string_to_parse_length) {
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
     if( string_to_parse[0] != STRING_ENCAPSULATOR ) return -1;
 

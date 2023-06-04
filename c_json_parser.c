@@ -18,13 +18,15 @@ const char STRING_ENCAPSULATOR = '"';
 */
 
 char* parse_string(char* substring, int* substr_length, char* string_to_parse, size_t string_to_parse_length) {
+    // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
     if( string_to_parse[0] != STRING_ENCAPSULATOR ) return -1;
 
-    *substr_length = strchr(string_to_parse + 1, (int) STRING_ENCAPSULATOR ) - string_to_parse;
+    // Getting substring length: ptr_to_STRING_ENCAPSULATOR_char - original_string_pinter - 1(to delete )
+    *substr_length = strchr(string_to_parse + 1, (int) STRING_ENCAPSULATOR ) - string_to_parse - 1;
     substring = (char*) malloc((*substr_length) + 1);
 
-    strncpy(substring, string_to_parse + 1, (*substr_length) - 1);
-    substring[*substr_length] = '\0';
+    strncpy(substring, string_to_parse + 1, (*substr_length));
+    substring[(*substr_length) + 1] = '\0';
 
     return 0;
 }

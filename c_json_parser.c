@@ -4,6 +4,8 @@
 #include "c_json_parser.h"
 
 const char STRING_ENCAPSULATOR = '"';
+const char ARRAY_OPEN_ENCAPSULATOR = '[';
+const char ARRAY_CLOSE_ENCAPSULATOR = ']';
 
 /********************* parse_string *******************//**
  * @brief parses a substring inside a char array encapsulated inside " chars
@@ -27,6 +29,63 @@ int parse_string(char* substring, int* substr_length, char* string_to_parse, siz
 
     strncpy(substring, string_to_parse + 1, (*substr_length));
     substring[(*substr_length) + 1] = '\0';
+
+    return 0;
+}
+
+/** int parse_array ( void* array_ptr, char* string_to_parse, size_t string_to_parse_length ) **//**
+ * @brief Parses the array in a string.
+ * 
+ * @param array_ptr pointer to the result array
+ * @param string_to_parse string to parse, pointing to the open array encapsulator char
+ * @param string_to_parse_length string to parse length
+ * 
+ * @return int length of the array
+ * @return -1 if error ocurred
+ */
+int parse_array( void* array_ptr, char* string_to_parse, size_t string_to_parse_length ) {
+    // Get the array length - number of objects in array
+    int array_length = get_array_length(string_to_parse, string_to_parse_length);
+    if( array_length == -1 ) return -1;
+
+    // Get the array object type
+    JSONType array_object_type = getType(string_to_parse + 1, string_to_parse_length - 1 );
+
+    size_t object_size;
+    switch(array_object_type) {
+        case JsonObject:
+            object_size = sizeof(JSONObject);
+            break;
+        case String:
+            object_size = sizeof(char*);
+            break;
+        case Integer:
+            object_size = sizeof(int);
+            break;
+        case Float:
+            object_size = sizeof(double);
+            break;
+        case Boolean:
+            object_size = sizeof(int);
+            break;
+        case Array:
+            object_size = sizeof(void*);
+            break;
+        case Null:
+            object_size = sizeof(void*);
+            break;
+        default:
+            return -1;
+    }
+
+    // Allocate array memory
+    array_ptr = malloc( object_size * array_length );
+
+    for( int i = 0; i < array_length; i++ ) {
+        if( next == NULL) return -1;
+
+        ((char*)array_ptr)[ object_size * i ] = parse(next, next - string_to_parse, next);
+    }
 
     return 0;
 }

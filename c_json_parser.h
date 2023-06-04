@@ -4,7 +4,7 @@
 // Types
 typedef enum
 {
-    JSONObject,
+    JsonObject,
     String,
     Integer,
     Float,

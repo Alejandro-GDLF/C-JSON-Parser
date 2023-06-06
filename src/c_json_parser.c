@@ -8,29 +8,51 @@ const char ARRAY_OPEN_ENCAPSULATOR = '[';
 const char ARRAY_CLOSE_ENCAPSULATOR = ']';
 
 /********************* parse_string *******************//**
- * @brief parses a substring inside a char array encapsulated inside " chars
+ * @brief parses a substring.
+ * @details This functions recieves a pointer to a string 
+ * encapsulated in " chars like so: "<string to parse>".
  * 
- * @param substring substring extracted
- * @param substr_length length of the substring
- * @param string_to_parse pointer to a " character that contains a string
- * @param string_to_parse_length length of the string passed
+ * @pre string_to_parse must be pointing to a " character.
+ * @post string encapsulated with null char appended.
+ * 
+ * @param substring substring extracted.
+ * @param substr_length length of the substring.
+ * @param string_to_parse pointer to a " character that contains a string.
+ * @param string_to_parse_length length of the string passed.
  * 
  * @return 0 success
  * @return -1 error has occured
 *//********************************************************/
 
-int parse_string(char* substring, int* substr_length, char* string_to_parse, size_t string_to_parse_length) {
+int parse_string( char* substring, int* substr_length, char* begin_string, char* end_string ) {
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
-    if( string_to_parse[0] != STRING_ENCAPSULATOR ) return -1;
+    if( begin_string[0] != STRING_ENCAPSULATOR ) return -1;
 
-    // Getting substring length: ptr_to_STRING_ENCAPSULATOR_char - original_string_pinter - 1(to delete )
-    *substr_length = strchr(string_to_parse + 1, (int) STRING_ENCAPSULATOR ) - string_to_parse - 1;
-    substring = (char*) malloc((*substr_length) + 1);
+    end_string = strchr(begin_string + 1, (int) STRING_ENCAPSULATOR );
+    if( end_string == NULL ) return -1;
 
-    strncpy(substring, string_to_parse + 1, (*substr_length));
+    *substr_length = end_string - (begin_string + 1);
+    
+    substring = (char*) malloc( (*substr_length) + 1 );
+    if( substring == NULL ) return -1;
+
+    strncpy(substring, begin_string + 1, (*substr_length));
     substring[(*substr_length) + 1] = '\0';
 
     return 0;
+}
+
+int parse_item( JSONEntry* json_item, char* begin_string ) {
+    char* next = begin_string;
+    while( (*next) == ' ' ) next++;
+
+    if( next[0] != '"') return -1;
+
+    if( parse_string(json_item->name, NULL, next, next ) == -1 ) return -1;
+
+    while( (*next) == ' ' ) next++;
+
+    if( next[0] != '"') return -1;
 }
 
 /** int parse_array ( void* array_ptr, char* string_to_parse, size_t string_to_parse_length ) **//**
@@ -42,7 +64,7 @@ int parse_string(char* substring, int* substr_length, char* string_to_parse, siz
  * 
  * @return int length of the array
  * @return -1 if error ocurred
- */
+ *//***********************************************************************************************/
 int parse_array( void* array_ptr, char* string_to_parse, size_t string_to_parse_length ) {
     // Get the array length - number of objects in array
     int array_length = get_array_length(string_to_parse, string_to_parse_length);
@@ -80,6 +102,7 @@ int parse_array( void* array_ptr, char* string_to_parse, size_t string_to_parse_
 
     // Allocate array memory
     array_ptr = malloc( object_size * array_length );
+    if (array_ptr == NULL ) return -1;
 
     for( int i = 0; i < array_length; i++ ) {
         if( next == NULL) return -1;

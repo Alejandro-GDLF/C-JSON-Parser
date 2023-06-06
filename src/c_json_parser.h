@@ -29,7 +29,7 @@ typedef struct
 typedef void* JSONRoot;
 
 // Functions
-JSONRoot* parse_string(char* string_to_parse, size_t string_to_parse_length);
+int parse(JSONRoot root, JSONType* type, char* string_to_parse, size_t string_to_parse_length);
 
 void* get_value(JSONObject* json_object, char* field_name, JSONType* value_type, void* error);
 

@@ -16,7 +16,7 @@ const char ARRAY_CLOSE_ENCAPSULATOR = ']';
  * @post string encapsulated with null char appended and pointer to the end of the string.
  * 
  * @param substring substring extracted.
- * @param substr_length length of the substring.
+ * @param substr_length length of the substring. If NULL not recorded.
  * @param begin_string pointer to a " character that contains a string.
  * @param end_string pointer to the last " character.
  * 
@@ -28,16 +28,22 @@ int parse_string( char* substring, int* substr_length, char* begin_string, char*
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
     if( begin_string[0] != STRING_ENCAPSULATOR ) return -1;
 
+    // Find end of string
     end_string = strchr(begin_string + 1, (int) STRING_ENCAPSULATOR );
     if( end_string == NULL ) return -1;
 
-    *substr_length = end_string - (begin_string + 1);
+    // Get the string length
+    int substr_length_int = end_string - (begin_string + 1);
+    if( substr_length != NULL ) 
+        *substr_length = substr_length_int;
     
-    substring = (char*) malloc( (*substr_length) + 1 );
+    // Allocate memory
+    substring = (char*) malloc( substr_length_int + 1 );
     if( substring == NULL ) return -1;
 
-    strncpy(substring, begin_string + 1, (*substr_length));
-    substring[(*substr_length) + 1] = '\0';
+    // Copy string and append null character
+    strncpy(substring, begin_string + 1, substr_length_int);
+    substring[substr_length_int + 1] = '\0';
 
     return 0;
 }

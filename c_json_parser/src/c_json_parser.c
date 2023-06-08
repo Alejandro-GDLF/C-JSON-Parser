@@ -13,12 +13,12 @@ const char ARRAY_CLOSE_ENCAPSULATOR = ']';
  * encapsulated in " chars like so: "<string to parse>".
  * 
  * @pre string_to_parse must be pointing to a " character.
- * @post string encapsulated with null char appended.
+ * @post string encapsulated with null char appended and pointer to the end of the string.
  * 
  * @param substring substring extracted.
  * @param substr_length length of the substring.
- * @param string_to_parse pointer to a " character that contains a string.
- * @param string_to_parse_length length of the string passed.
+ * @param begin_string pointer to a " character that contains a string.
+ * @param end_string pointer to the last " character.
  * 
  * @return 0 success
  * @return -1 error has occured

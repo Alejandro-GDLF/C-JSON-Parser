@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-#include "../headers/c_json_parser.h"
+#include "../../headers/c_json_parser.h"
+#include "unit_tests.h"
 
 #define N 4
 
@@ -10,7 +11,7 @@ void make_integer_test(char strings[N][100], int numbers[N], JSONType type, char
     {
         JSONRoot root;
 
-        if( parse(&root, strings[i], NULL )) 
+        if( parse_json(&root, strings[i])) 
         {
             printf("Unit test: parse_number_unit_test failed at %s.\nparse returned -1\n", id);
             continue;
@@ -38,7 +39,7 @@ void make_double_test(char strings[N][100], double numbers[N], JSONType type, ch
     {
         JSONRoot root;
 
-        if( parse(&root, strings[i], NULL )) 
+        if( parse_json(&root, strings[i] )) 
         {
             printf("Unit test: parse_number_unit_test failed at %s.\nparse returned -1\n", id);
             continue;

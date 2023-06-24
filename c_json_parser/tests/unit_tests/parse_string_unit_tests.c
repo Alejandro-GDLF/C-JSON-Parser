@@ -2,7 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../headers/c_json_parser.h"
+#include "../../headers/c_json_parser.h"
+#include "unit_tests.h"
 
 void parse_string_unit_test() 
 {
@@ -11,7 +12,7 @@ void parse_string_unit_test()
     char input[] = "\"helloWorld\"";
     char expected_output[] = "helloWorld";
 
-    if( parse((JSONValue*)&root, input, NULL) == -1) {
+    if( parse_json((JSONValue*)&root, input) == -1) {
         printf("Unit test: parse_string_unit_test failed.\nparse returned -1\n");
         goto finish;
     }
@@ -36,7 +37,7 @@ void parse_string_unit_test_failed ()
     JSONRoot root;
 
     char input[] = "\"kjsnf";
-    if( parse(&root, input, NULL) == -1) 
+    if( parse_json(&root, input) == -1) 
     {
         printf("Unit test: parse_string_unit_test_failed sucessful.\n");
         goto finish;
@@ -55,7 +56,7 @@ void parse_string_unit_test_spaces()
     char input[] = "            \"helloWorld\"";
     char expected_output[] = "helloWorld";
 
-    if( parse((JSONValue*)&root, input, NULL) == -1) {
+    if( parse_json((JSONValue*)&root, input) == -1) {
         printf("Unit test: parse_string_unit_test_spaces failed.\nparse returned -1\n");
         goto finish;
     }
@@ -82,7 +83,7 @@ void parse_string_unit_test_tabs()
     char input[] = "\t\t\"helloWorld\"";
     char expected_output[] = "helloWorld";
 
-    if( parse((JSONValue*)&root, input, NULL) == -1) {
+    if( parse_json((JSONValue*)&root, input) == -1) {
         printf("Unit test: parse_string_unit_test_tabs failed.\nparse returned -1\n");
         goto finish;
     }
@@ -108,7 +109,7 @@ void parse_string_unit_test_escaped_double_quotes() {
     char input[] = "\"hello\\\"World\\\"\"";
     char expected_output[] = "hello\"World\"";
 
-    if( parse((JSONValue*)&root, input, NULL) == -1) {
+    if( parse_json((JSONValue*)&root, input) == -1) {
         printf("Unit test: parse_string_unit_test_scaped_double_quotes failed.\nparse returned -1\n");
         goto finish;
     }

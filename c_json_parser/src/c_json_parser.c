@@ -13,6 +13,8 @@ static int parse_array( JSONArray*, char*, char**);
 static int parse_number(JSONValue*, char*, char**);
 static int parse_boolean(int*, char*, char **);
 static int parse_null(int*, char*, char**);
+static void free_j_object(JSONObject*);
+static void free_j_array(JSONArray*);
 
 //******************************************************************************
 
@@ -102,6 +104,18 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
     if( value->type != Array ) return NULL;
 
     return &value->value.array;
+}
+
+void c_json_free (JSONValue *value)
+{
+    if( value->type == JsonObject )
+        free_j_object(&value->value.json_object);
+
+    else if( value->type == Array )
+        free_j_array(&value->value.array);
+
+    else if (value->type == String )
+        free((void*)value->value.string_value);
 }
 
 //************************** Private functions *********************************
@@ -422,4 +436,23 @@ static int parse_null(int* object, char* begin_string, char** end_string)
         *end_string = begin_string + 4;
 
     return 0;
+}
+
+static void free_j_object(JSONObject *object)
+{
+    for( size_t i = 0; i < object->entries_length; i++)
+    {
+        free(object->entries[i].name);
+        c_json_free(&object->entries[i].value);
+    }
+
+    free(object->entries);
+}
+
+static void free_j_array(JSONArray *array)
+{
+    for(size_t i  = 0; i < array->length; i++ )
+        c_json_free(&array->body[i]);
+
+    free(array->body);
 }

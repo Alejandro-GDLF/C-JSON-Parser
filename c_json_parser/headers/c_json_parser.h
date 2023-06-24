@@ -22,4 +22,7 @@ const char* get_string( const JSONValue* json_object, const char* field_name, vo
 const JSONObject* get_json_object( const JSONValue* json_object, const char* field_name, void *error);
 const JSONArray* get_array(const JSONValue* json_object, const char *field_name, void *error);
 
+// Freeing objects
+void c_json_free (JSONValue *root);
+
 #endif

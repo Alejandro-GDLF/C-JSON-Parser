@@ -33,5 +33,29 @@ int main()
         }
     }
 
+    if( strcmp(root.value.json_object.entries[0].value.value.string_value, "John") != 0 )
+    {
+        printf("Values does not match: \n");
+        printf("\t-Expected: Jhon\n");
+        printf("\t-Recieved: %s.", root.value.json_object.entries[0].value.value.string_value);
+        return -1;
+    }
+    
+    if( root.value.json_object.entries[1].value.value.integer_value != 31 )
+    {
+        printf("Values does not match: \n");
+        printf("\t-Expected: 31.\n");
+        printf("\t-Recieved: %d.", root.value.json_object.entries[1].value.value.integer_value);
+        return -1;
+    }
+
+    if( strcmp(root.value.json_object.entries[2].value.value.string_value, "New York") != 0 )
+    {
+        printf("Values does not match: \n");
+        printf("\t-Expected: New York\n");
+        printf("\t-Recieved: %s.", root.value.json_object.entries[2].value.value.string_value);
+        return -1;
+    }
+
     printf("Test: passed successfully");
 }

@@ -187,13 +187,13 @@ static int remove_escaped_chars(char* string)
 }
 
 /********************* parse_string ****************************************//**
- * @brief parses a substring.
+ * @brief parses a substring encolsed in '"' characters.
  * @details This functions recieves a pointer to a string 
  * enclosed in " chars like so: "<string to parse>".
  * 
  * @pre string_to_parse must be pointing to a " character.
  * @post string enclosed with null char appended and pointer to the 
- * end of the string.
+ * end of the string + 1.
  * 
  * @param[out] substring substring extracted.
  * @param[out] substr_length length of the substring. If NULL not recorded.
@@ -287,10 +287,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
             max_length *= 2;
             JSONEntry* new_ptr = realloc(object->entries, max_length);
             if( new_ptr == NULL ) 
-            {
-                //free_json_object(object);
                 return -1;
-            }
 
             object->entries = new_ptr;
         }
@@ -316,12 +313,12 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
 }
 
 /**************************** parse_array **********************************//**
- * @brief Parses the array in a string.
+ * @brief Parses the array in a JSON string.
  * 
- * @param array_ptr pointer to the result array
- * @param string_to_parse string to parse, pointing to the open array 
- * encapsulator
- * @param string_to_parse_length string to parse length
+ * @param[out] array_ptr pointer to the result array.
+ * @param[in] string_to_parse string to parse, pointing to the open array 
+ * encapsulator.
+ * @param[out] end_string end of the array. Pointer to the ']' char + 1.
  * 
  * @return int length of the array
  * @return -1 if error ocurred

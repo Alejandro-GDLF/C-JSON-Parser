@@ -4,7 +4,7 @@
 #include "unit_tests.h"
 #define N 5
 
-void make_array_test(int expected, char input[])
+void make_array_test(size_t expected, char input[])
 {
     JSONRoot root;
     if( parse_json(&root, input) == -1 )
@@ -15,7 +15,7 @@ void make_array_test(int expected, char input[])
 
     if( root.type != Array )
     {
-        printf("Unit test: test failed. Parse returned wrong type: %d.\n");
+        printf("Unit test: test failed. Parse returned wrong type: %d.\n", root.type);
         printf("\t- Returned: %d\n", root.type);
         return;
     }
@@ -33,7 +33,7 @@ void make_array_test(int expected, char input[])
 void unit_test_parse_array()
 {
     char input[N][50] = { "[  ]", "[ 23, 11 ]", "[1,2,3,4,5,6,7,8,9]", "[ \"somethin\", \"eres\"]", "[{},{}]"};
-    int expected[N] = {0, 2, 9, 2, 2};
+    size_t expected[N] = {0, 2, 9, 2, 2};
 
     for( int i = 0; i < N; i++ )
         make_array_test(expected[i], input[i]);

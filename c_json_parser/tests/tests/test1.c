@@ -21,7 +21,7 @@ int main()
         return -1;
     }
 
-    for( int i = 0; i < root.value.json_object.entries_length; i++ )
+    for( size_t i = 0; i < root.value.json_object.entries_length; i++ )
     {
         if(strcmp(root.value.json_object.entries[i].name, names[i]) != 0 )
         {
@@ -45,7 +45,7 @@ int main()
     {
         printf("Values does not match: \n");
         printf("\t-Expected: 31.\n");
-        printf("\t-Recieved: %d.", root.value.json_object.entries[1].value.value.integer_value);
+        printf("\t-Recieved: %I64d.", root.value.json_object.entries[1].value.value.integer_value);
         return -1;
     }
 

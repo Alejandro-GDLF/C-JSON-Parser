@@ -20,7 +20,13 @@ static void free_j_array(JSONArray*);
 
 int parse_json(JSONRoot* root, char* string_to_parse)
 {
-    return parse((JSONValue*) root, string_to_parse, NULL);
+    if( parse((JSONValue*) root, string_to_parse, NULL) == -1)
+    {
+        c_json_free(root);
+        return -1;
+    }
+    
+    return 0;
 }
 
 JSONType get_type(const JSONValue* value)
@@ -196,7 +202,6 @@ static int remove_escaped_chars(char* string)
  * end of the string + 1.
  * 
  * @param[out] substring substring extracted.
- * @param[out] substr_length length of the substring. If NULL not recorded.
  * @param[in]  begin_string pointer to a " character that contains a string.
  * @param[out] end_string pointer to the first char after string representation.
  * 
@@ -245,7 +250,6 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
 
     char* next = begin_item;
     while( isspace(*next) ) next++;
-    if( *next != '"') return -1;
 
     if( parse_string(&(json_item->name), next, &next ) == -1 ) return -1;
 
@@ -329,9 +333,9 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
     if( array == NULL ) return -1;
 
     size_t array_max_length = ARRAY_BUFFER_LENGTH;
-    size_t array_length = 0;
+    array->length = 0;
 
-    JSONValue* _array = (JSONValue*) malloc(sizeof(JSONValue) * array_max_length);
+    array->body = (JSONValue*) malloc(sizeof(JSONValue) * array_max_length);
 
     char* next = string_to_parse + 1;
 
@@ -341,31 +345,28 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
 
     do
     {
-        if( array_length >= array_max_length ) {
+        if( array->length >= array_max_length ) {
             array_max_length *= 2;
-            void* new_ptr = realloc(_array, array_max_length);
+            void* new_ptr = realloc(array->body, array_max_length);
 
             if( new_ptr == NULL )
                 return -1;
 
-            _array = new_ptr;
+            array->body = new_ptr;
         }
 
         next++;
         while( isspace(*next) ) next++;
-        if( parse(&_array[array_length], next, &next) == -1 ) return -1;
+        if( parse(&array->body[array->length], next, &next) == -1 ) return -1;
         while( isspace(*next) ) next++;
 
-        array_length++;
+        array->length++;
 
     } while (*next != '\0' && *next != ']');
 
     if( *next != ']' ) return -1;
 
     finish:
-
-    array->body = _array;
-    array->length = array_length;
 
     if( end_string != NULL )
         *end_string = next + 1;

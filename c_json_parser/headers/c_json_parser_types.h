@@ -1,3 +1,14 @@
+/**
+ * @file c_json_parser_types.h
+ * @author Alejandro-GDLF@github.com
+ * @brief Header file to describe JSON Parser types.
+ * @version 0.1
+ * @date 2023-07-25
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _C_JSON_PARSER_TYPES_H_
 #define _C_JSON_PARSER_TYPES_H_
 

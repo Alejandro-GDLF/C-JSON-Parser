@@ -1,3 +1,14 @@
+/**
+ * @file c_json_parser.h
+ * @author Alejandro-GDLF@github.com
+ * @brief Public header for c json parser public functions.
+ * @version 0.1
+ * @date 2023-07-25
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _C_JSON_PARSER_H_
 #define _C_JSON_PARSER_H_
 

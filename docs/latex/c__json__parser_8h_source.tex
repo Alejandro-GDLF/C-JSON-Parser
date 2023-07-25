@@ -1,0 +1,34 @@
+\doxysection{c\+\_\+json\+\_\+parser.\+h}
+\hypertarget{c__json__parser_8h_source}{}\label{c__json__parser_8h_source}\index{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser.h@{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser.h}}
+\mbox{\hyperlink{c__json__parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ \_C\_JSON\_PARSER\_H\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ \_C\_JSON\_PARSER\_H\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{c__json__parser__types_8h}{c\_json\_parser\_types.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ \mbox{\hyperlink{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68}{JSONRoot}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Functions}}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{int}\ parse\_json(\mbox{\hyperlink{struct___j_s_o_n_value}{JSONRoot}}*\ root,\ \textcolor{keywordtype}{char}*\ string\_to\_parse);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ JSONType\ get\_type(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ value);}
+\DoxyCodeLine{00024\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ get\_value(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ value);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ get\_key\_value(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}*\ error);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Specific\ functions}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}*\ get\_integer(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}*\ error);}
+\DoxyCodeLine{00030\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ get\_float(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}*\ error);}
+\DoxyCodeLine{00031\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ get\_boolean(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}*\ error);}
+\DoxyCodeLine{00032\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ get\_string(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}*\ error);}
+\DoxyCodeLine{00033\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}}*\ get\_json\_object(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ field\_name,\ \textcolor{keywordtype}{void}\ *error);}
+\DoxyCodeLine{00034\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}}*\ get\_array(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}*\ json\_object,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *field\_name,\ \textcolor{keywordtype}{void}\ *error);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Freeing\ objects}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ c\_json\_free\ (\mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ *root);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,85 @@
+\doxysection{C\+:/tmp/\+C-\/\+JSON-\/\+Parser/c\+\_\+json\+\_\+parser/src/c\+\_\+json\+\_\+parser.c File Reference}
+\hypertarget{c__json__parser_8c}{}\label{c__json__parser_8c}\index{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/src/c\_json\_parser.c@{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/src/c\_json\_parser.c}}
+
+
+Source code file for c\+\_\+json\+\_\+parser.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \"{}../headers/c\+\_\+json\+\_\+parser.\+h\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{c__json__parser_8c_ad1dd308406fef22bedc4a054da8e22b0}\label{c__json__parser_8c_ad1dd308406fef22bedc4a054da8e22b0} 
+\#define {\bfseries ARRAY\+\_\+\+BUFFER\+\_\+\+LENGTH}~10
+\item 
+\Hypertarget{c__json__parser_8c_a804373b21d5a25386723e73926d7e606}\label{c__json__parser_8c_a804373b21d5a25386723e73926d7e606} 
+\#define {\bfseries JOBJECT\+\_\+\+BUFFER\+\_\+\+LENGTH}~10
+\item 
+\Hypertarget{c__json__parser_8c_aac01c3255ecec789558c3a37d12dd027}\label{c__json__parser_8c_aac01c3255ecec789558c3a37d12dd027} 
+\#define {\bfseries SHRINK\+\_\+\+TO\+\_\+\+FIT}
+\item 
+\Hypertarget{c__json__parser_8c_a147f04c85796de43bf735e1e2954607b}\label{c__json__parser_8c_a147f04c85796de43bf735e1e2954607b} 
+\#define {\bfseries ARRAY\+\_\+\+OPEN\+\_\+\+ENCAPSULATOR}~\textquotesingle{}\mbox{[}\textquotesingle{}
+\item 
+\Hypertarget{c__json__parser_8c_a8550cc44e2917b6d5c1dca3510b73b05}\label{c__json__parser_8c_a8550cc44e2917b6d5c1dca3510b73b05} 
+\#define {\bfseries STRING\+\_\+\+ENCAPSULATOR}~\textquotesingle{}\"{}\textquotesingle{}
+\item 
+\Hypertarget{c__json__parser_8c_a1e43847a2e8d700106f75d94af77bd02}\label{c__json__parser_8c_a1e43847a2e8d700106f75d94af77bd02} 
+\#define {\bfseries ARRAY\+\_\+\+CLOSE\+\_\+\+ENCAPSULATOR}~\textquotesingle{}\mbox{]}\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{c__json__parser_8c_a4e0baf55889969654a8b69968a9d90f1}\label{c__json__parser_8c_a4e0baf55889969654a8b69968a9d90f1} 
+int {\bfseries parse\+\_\+json} (\mbox{\hyperlink{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68}{JSONRoot}} \texorpdfstring{$\ast$}{*}root, char \texorpdfstring{$\ast$}{*}string\+\_\+to\+\_\+parse)
+\item 
+\Hypertarget{c__json__parser_8c_a6dd1fb04ce12680bd642d4f7ab02a74f}\label{c__json__parser_8c_a6dd1fb04ce12680bd642d4f7ab02a74f} 
+JSONType {\bfseries get\+\_\+type} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}value)
+\item 
+\Hypertarget{c__json__parser_8c_a994df8efc00065c0b76a5006b3a8533c}\label{c__json__parser_8c_a994df8efc00065c0b76a5006b3a8533c} 
+const void \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+value} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}value)
+\item 
+\Hypertarget{c__json__parser_8c_aa1c67eeddcbd66a4974545b56e746328}\label{c__json__parser_8c_aa1c67eeddcbd66a4974545b56e746328} 
+const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+key\+\_\+value} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_aa811cf3c0921d273685284a8ef0991ab}\label{c__json__parser_8c_aa811cf3c0921d273685284a8ef0991ab} 
+const long long \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+integer} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_aa9aac280df541978c269c9a773428586}\label{c__json__parser_8c_aa9aac280df541978c269c9a773428586} 
+const double \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+float} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_abbfc095ae68e67cd6e9ffb46816ab14d}\label{c__json__parser_8c_abbfc095ae68e67cd6e9ffb46816ab14d} 
+const int \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+boolean} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_a061f89b657636594773764cc2515391d}\label{c__json__parser_8c_a061f89b657636594773764cc2515391d} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+string} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_a56158d720b59f105c1a0e3c1bd4051ea}\label{c__json__parser_8c_a56158d720b59f105c1a0e3c1bd4051ea} 
+const \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+json\+\_\+object} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_ab813ea13ec58e978b71cfaec814ebd43}\label{c__json__parser_8c_ab813ea13ec58e978b71cfaec814ebd43} 
+const \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+array} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\item 
+\Hypertarget{c__json__parser_8c_ad391384c82e98f978df61655c22e428a}\label{c__json__parser_8c_ad391384c82e98f978df61655c22e428a} 
+void {\bfseries c\+\_\+json\+\_\+free} (\mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Source code file for c\+\_\+json\+\_\+parser. 
+
+\begin{DoxyAuthor}{Author}
+\href{mailto:Alejandro-GDLF@github.com}{\texttt{ Alejandro-\/\+GDLF@github.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/07-\/25
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}

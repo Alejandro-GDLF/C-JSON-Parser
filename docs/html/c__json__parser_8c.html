@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C JSON Parser: C:/tmp/C-JSON-Parser/c_json_parser/src/c_json_parser.c File Reference</title>
+<title>C JSON Parser: c_json_parser.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,6 +87,25 @@ $(function() {
 <code>#include &lt;ctype.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="c__json__parser_8h_source.html">../headers/c_json_parser.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for c_json_parser.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="c__json__parser_8c__incl.png" border="0" usemap="#ac__json__parser_8c" alt=""/></div>
+<map name="ac__json__parser_8c" id="ac__json__parser_8c">
+<area shape="rect" title="Source code file for c_json_parser." alt="" coords="104,5,217,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,70,107"/>
+<area shape="poly" title=" " alt="" coords="140,35,73,74,70,70,137,30"/>
+<area shape="rect" title=" " alt="" coords="93,80,158,107"/>
+<area shape="poly" title=" " alt="" coords="157,34,140,68,135,66,152,31"/>
+<area shape="rect" title=" " alt="" coords="219,229,283,256"/>
+<area shape="poly" title=" " alt="" coords="168,32,228,180,242,214,237,217,223,182,163,34"/>
+<area shape="rect" href="c__json__parser_8h.html" title="Public header for c json parser public functions." alt="" coords="233,80,408,107"/>
+<area shape="poly" title=" " alt="" coords="189,30,280,71,278,76,187,35"/>
+<area shape="rect" href="c__json__parser__types_8h.html" title="Header file to describe JSON Parser types." alt="" coords="237,155,390,181"/>
+<area shape="poly" title=" " alt="" coords="322,107,319,140,313,140,316,107"/>
+<area shape="poly" title=" " alt="" coords="305,184,273,220,269,216,301,180"/>
+</map>
+</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -111,38 +130,38 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4e0baf55889969654a8b69968a9d90f1"><td class="memItemLeft" align="right" valign="top"><a id="a4e0baf55889969654a8b69968a9d90f1" name="a4e0baf55889969654a8b69968a9d90f1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>parse_json</b> (<a class="el" href="c__json__parser_8h.html#aea5a9b818990978918bf8dcb5ced3a68">JSONRoot</a> *root, char *string_to_parse)</td></tr>
+<tr class="memitem:a4e0baf55889969654a8b69968a9d90f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#a4e0baf55889969654a8b69968a9d90f1">parse_json</a> (<a class="el" href="c__json__parser_8h.html#aea5a9b818990978918bf8dcb5ced3a68">JSONRoot</a> *root, char *string_to_parse)</td></tr>
+<tr class="memdesc:a4e0baf55889969654a8b69968a9d90f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a JSON string.  <br /></td></tr>
 <tr class="separator:a4e0baf55889969654a8b69968a9d90f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dd1fb04ce12680bd642d4f7ab02a74f"><td class="memItemLeft" align="right" valign="top"><a id="a6dd1fb04ce12680bd642d4f7ab02a74f" name="a6dd1fb04ce12680bd642d4f7ab02a74f"></a>
-JSONType&#160;</td><td class="memItemRight" valign="bottom"><b>get_type</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memitem:a6dd1fb04ce12680bd642d4f7ab02a74f"><td class="memItemLeft" align="right" valign="top">JSONType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#a6dd1fb04ce12680bd642d4f7ab02a74f">get_type</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memdesc:a6dd1fb04ce12680bd642d4f7ab02a74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type of the JSON value object.  <br /></td></tr>
 <tr class="separator:a6dd1fb04ce12680bd642d4f7ab02a74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a994df8efc00065c0b76a5006b3a8533c"><td class="memItemLeft" align="right" valign="top"><a id="a994df8efc00065c0b76a5006b3a8533c" name="a994df8efc00065c0b76a5006b3a8533c"></a>
-const void *&#160;</td><td class="memItemRight" valign="bottom"><b>get_value</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memitem:a994df8efc00065c0b76a5006b3a8533c"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#a994df8efc00065c0b76a5006b3a8533c">get_value</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memdesc:a994df8efc00065c0b76a5006b3a8533c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the JSON object.  <br /></td></tr>
 <tr class="separator:a994df8efc00065c0b76a5006b3a8533c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1c67eeddcbd66a4974545b56e746328"><td class="memItemLeft" align="right" valign="top"><a id="aa1c67eeddcbd66a4974545b56e746328" name="aa1c67eeddcbd66a4974545b56e746328"></a>
-const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_key_value</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:aa1c67eeddcbd66a4974545b56e746328"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#aa1c67eeddcbd66a4974545b56e746328">get_key_value</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:aa1c67eeddcbd66a4974545b56e746328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value from an object given its key.  <br /></td></tr>
 <tr class="separator:aa1c67eeddcbd66a4974545b56e746328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa811cf3c0921d273685284a8ef0991ab"><td class="memItemLeft" align="right" valign="top"><a id="aa811cf3c0921d273685284a8ef0991ab" name="aa811cf3c0921d273685284a8ef0991ab"></a>
-const long long *&#160;</td><td class="memItemRight" valign="bottom"><b>get_integer</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:aa811cf3c0921d273685284a8ef0991ab"><td class="memItemLeft" align="right" valign="top">const long long *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#aa811cf3c0921d273685284a8ef0991ab">get_integer</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:aa811cf3c0921d273685284a8ef0991ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the integer value of a field.  <br /></td></tr>
 <tr class="separator:aa811cf3c0921d273685284a8ef0991ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9aac280df541978c269c9a773428586"><td class="memItemLeft" align="right" valign="top"><a id="aa9aac280df541978c269c9a773428586" name="aa9aac280df541978c269c9a773428586"></a>
-const double *&#160;</td><td class="memItemRight" valign="bottom"><b>get_float</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:aa9aac280df541978c269c9a773428586"><td class="memItemLeft" align="right" valign="top">const double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#aa9aac280df541978c269c9a773428586">get_float</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:aa9aac280df541978c269c9a773428586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the float value of a field.  <br /></td></tr>
 <tr class="separator:aa9aac280df541978c269c9a773428586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbfc095ae68e67cd6e9ffb46816ab14d"><td class="memItemLeft" align="right" valign="top"><a id="abbfc095ae68e67cd6e9ffb46816ab14d" name="abbfc095ae68e67cd6e9ffb46816ab14d"></a>
-const int *&#160;</td><td class="memItemRight" valign="bottom"><b>get_boolean</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:abbfc095ae68e67cd6e9ffb46816ab14d"><td class="memItemLeft" align="right" valign="top">const int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#abbfc095ae68e67cd6e9ffb46816ab14d">get_boolean</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:abbfc095ae68e67cd6e9ffb46816ab14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the boolean value of a field.  <br /></td></tr>
 <tr class="separator:abbfc095ae68e67cd6e9ffb46816ab14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a061f89b657636594773764cc2515391d"><td class="memItemLeft" align="right" valign="top"><a id="a061f89b657636594773764cc2515391d" name="a061f89b657636594773764cc2515391d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>get_string</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:a061f89b657636594773764cc2515391d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#a061f89b657636594773764cc2515391d">get_string</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:a061f89b657636594773764cc2515391d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the string value of a field.  <br /></td></tr>
 <tr class="separator:a061f89b657636594773764cc2515391d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56158d720b59f105c1a0e3c1bd4051ea"><td class="memItemLeft" align="right" valign="top"><a id="a56158d720b59f105c1a0e3c1bd4051ea" name="a56158d720b59f105c1a0e3c1bd4051ea"></a>
-const <a class="el" href="struct___j_s_o_n_object.html">JSONObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_json_object</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:a56158d720b59f105c1a0e3c1bd4051ea"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct___j_s_o_n_object.html">JSONObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#a56158d720b59f105c1a0e3c1bd4051ea">get_json_object</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:a56158d720b59f105c1a0e3c1bd4051ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON object of a field.  <br /></td></tr>
 <tr class="separator:a56158d720b59f105c1a0e3c1bd4051ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab813ea13ec58e978b71cfaec814ebd43"><td class="memItemLeft" align="right" valign="top"><a id="ab813ea13ec58e978b71cfaec814ebd43" name="ab813ea13ec58e978b71cfaec814ebd43"></a>
-const <a class="el" href="struct___j_s_o_n_array.html">JSONArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_array</b> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memitem:ab813ea13ec58e978b71cfaec814ebd43"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct___j_s_o_n_array.html">JSONArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#ab813ea13ec58e978b71cfaec814ebd43">get_array</a> (const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *json_object, const char *field_name, void *error)</td></tr>
+<tr class="memdesc:ab813ea13ec58e978b71cfaec814ebd43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the array of a field.  <br /></td></tr>
 <tr class="separator:ab813ea13ec58e978b71cfaec814ebd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad391384c82e98f978df61655c22e428a"><td class="memItemLeft" align="right" valign="top"><a id="ad391384c82e98f978df61655c22e428a" name="ad391384c82e98f978df61655c22e428a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>c_json_free</b> (<a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memitem:ad391384c82e98f978df61655c22e428a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser_8c.html#ad391384c82e98f978df61655c22e428a">c_json_free</a> (<a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *value)</td></tr>
+<tr class="memdesc:ad391384c82e98f978df61655c22e428a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees JSON object.  <br /></td></tr>
 <tr class="separator:ad391384c82e98f978df61655c22e428a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,7 +170,457 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>c_json_free</b> (<a c
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-07-25</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad391384c82e98f978df61655c22e428a" name="ad391384c82e98f978df61655c22e428a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad391384c82e98f978df61655c22e428a">&#9670;&#160;</a></span>c_json_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void c_json_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>root</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frees JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">root</td><td>JSON object to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab813ea13ec58e978b71cfaec814ebd43" name="ab813ea13ec58e978b71cfaec814ebd43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab813ea13ec58e978b71cfaec814ebd43">&#9670;&#160;</a></span>get_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct___j_s_o_n_array.html">JSONArray</a> * get_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the array of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the integer value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="abbfc095ae68e67cd6e9ffb46816ab14d" name="abbfc095ae68e67cd6e9ffb46816ab14d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbfc095ae68e67cd6e9ffb46816ab14d">&#9670;&#160;</a></span>get_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int * get_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the boolean value of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the boolean value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="aa9aac280df541978c269c9a773428586" name="aa9aac280df541978c269c9a773428586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9aac280df541978c269c9a773428586">&#9670;&#160;</a></span>get_float()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double * get_float </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the float value of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the float value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="aa811cf3c0921d273685284a8ef0991ab" name="aa811cf3c0921d273685284a8ef0991ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa811cf3c0921d273685284a8ef0991ab">&#9670;&#160;</a></span>get_integer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const long long * get_integer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the integer value of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the integer value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="a56158d720b59f105c1a0e3c1bd4051ea" name="a56158d720b59f105c1a0e3c1bd4051ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56158d720b59f105c1a0e3c1bd4051ea">&#9670;&#160;</a></span>get_json_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct___j_s_o_n_object.html">JSONObject</a> * get_json_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the JSON object of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the JSON object if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="aa1c67eeddcbd66a4974545b56e746328" name="aa1c67eeddcbd66a4974545b56e746328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1c67eeddcbd66a4974545b56e746328">&#9670;&#160;</a></span>get_key_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> * get_key_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the value from an object given its key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="a061f89b657636594773764cc2515391d" name="a061f89b657636594773764cc2515391d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061f89b657636594773764cc2515391d">&#9670;&#160;</a></span>get_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * get_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>json_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>field_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the string value of a field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json_object</td><td>JSON object to consult. </td></tr>
+    <tr><td class="paramname">field_name</td><td>JSON key string. </td></tr>
+    <tr><td class="paramname">error</td><td>Error produced while consulting.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the string value if success. </dd>
+<dd>
+NULL if failure. </dd></dl>
+
+</div>
+</div>
+<a id="a6dd1fb04ce12680bd642d4f7ab02a74f" name="a6dd1fb04ce12680bd642d4f7ab02a74f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd1fb04ce12680bd642d4f7ab02a74f">&#9670;&#160;</a></span>get_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSONType get_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the type of the JSON value object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>JSON value which type is retrieved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>JSON type of the value passed. </dd></dl>
+
+</div>
+</div>
+<a id="a994df8efc00065c0b76a5006b3a8533c" name="a994df8efc00065c0b76a5006b3a8533c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994df8efc00065c0b76a5006b3a8533c">&#9670;&#160;</a></span>get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void * get_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct___j_s_o_n_value.html">JSONValue</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the value of the JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>JSON value which value is retrieved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the value. </dd></dl>
+
+</div>
+</div>
+<a id="a4e0baf55889969654a8b69968a9d90f1" name="a4e0baf55889969654a8b69968a9d90f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0baf55889969654a8b69968a9d90f1">&#9670;&#160;</a></span>parse_json()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parse_json </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__json__parser_8h.html#aea5a9b818990978918bf8dcb5ced3a68">JSONRoot</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string_to_parse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses a JSON string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">root</td><td>JSON object from the string. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">string_to_parse</td><td>String to parse. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if error occurred </dd>
+<dd>
+0 if successful </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7

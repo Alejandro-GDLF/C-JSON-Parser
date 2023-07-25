@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C JSON Parser: C:/tmp/C-JSON-Parser/c_json_parser/headers/c_json_parser_types.h File Reference</title>
+<title>C JSON Parser: c_json_parser_types.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,20 +84,48 @@ $(function() {
 
 <p>Header file to describe JSON Parser types.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for c_json_parser_types.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="c__json__parser__types_8h__incl.png" border="0" usemap="#ac__json__parser__types_8h" alt=""/></div>
+<map name="ac__json__parser__types_8h" id="ac__json__parser__types_8h">
+<area shape="rect" title="Header file to describe JSON Parser types." alt="" coords="5,5,158,32"/>
+<area shape="rect" title=" " alt="" coords="50,80,113,107"/>
+<area shape="poly" title=" " alt="" coords="84,33,84,65,79,65,79,33"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="c__json__parser__types_8h__dep__incl.png" border="0" usemap="#ac__json__parser__types_8hdep" alt=""/></div>
+<map name="ac__json__parser__types_8hdep" id="ac__json__parser__types_8hdep">
+<area shape="rect" title="Header file to describe JSON Parser types." alt="" coords="5,5,158,32"/>
+<area shape="rect" href="c__json__parser_8h.html" title="Public header for c json parser public functions." alt="" coords="25,80,138,107"/>
+<area shape="poly" title=" " alt="" coords="84,47,84,80,79,80,79,47"/>
+<area shape="rect" href="c__json__parser_8c.html" title="Source code file for c_json_parser." alt="" coords="25,155,138,181"/>
+<area shape="poly" title=" " alt="" coords="84,122,84,154,79,154,79,122"/>
+</map>
+</div>
+</div>
 <p><a href="c__json__parser__types_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___j_s_o_n_array.html">_JSONArray</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of JSON values.  <a href="struct___j_s_o_n_array.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___j_s_o_n_object.html">_JSONObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of entries.  <a href="struct___j_s_o_n_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__json__values.html">_json_values</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union of the different types a JSON object can be.  <a href="union__json__values.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___j_s_o_n_value.html">_JSONValue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value and type of the object.  <a href="struct___j_s_o_n_value.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___j_s_o_n_entry.html">_JSONEntry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pair of string and value for JSON objects.  <a href="struct___j_s_o_n_entry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -115,12 +143,12 @@ typedef struct <a class="el" href="struct___j_s_o_n_array.html">_JSONArray</a>&#
 typedef struct <a class="el" href="struct___j_s_o_n_value.html">_JSONValue</a>&#160;</td><td class="memItemRight" valign="bottom"><b>JSONValue</b></td></tr>
 <tr class="separator:a142a4e23c851ed6829d231908338cb7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd594066afb54101385de2ac29b8af37"><td class="memItemLeft" align="right" valign="top"><a id="abd594066afb54101385de2ac29b8af37" name="abd594066afb54101385de2ac29b8af37"></a>
-typedef enum _JSONType&#160;</td><td class="memItemRight" valign="bottom"><b>JSONType</b></td></tr>
+typedef enum <a class="el" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>JSONType</b></td></tr>
 <tr class="separator:abd594066afb54101385de2ac29b8af37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a348810079ad1d55ce2743df17b77ce3e"><td class="memItemLeft" align="right" valign="top"><a id="a348810079ad1d55ce2743df17b77ce3e" name="a348810079ad1d55ce2743df17b77ce3e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>_JSONType</b> { <br />
+<tr class="memitem:a348810079ad1d55ce2743df17b77ce3e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a> { <br />
 &#160;&#160;<b>JsonObject</b>
 , <b>String</b>
 , <b>Integer</b>
@@ -131,6 +159,7 @@ Enumerations</h2></td></tr>
 , <b>Null</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a348810079ad1d55ce2743df17b77ce3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration for identifying the JSON value type.  <a href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">More...</a><br /></td></tr>
 <tr class="separator:a348810079ad1d55ce2743df17b77ce3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -139,7 +168,24 @@ Enumerations</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-07-25</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a348810079ad1d55ce2743df17b77ce3e" name="a348810079ad1d55ce2743df17b77ce3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348810079ad1d55ce2743df17b77ce3e">&#9670;&#160;</a></span>_JSONType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumeration for identifying the JSON value type. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7

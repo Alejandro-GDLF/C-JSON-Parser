@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C JSON Parser: C:/tmp/C-JSON-Parser/c_json_parser/headers/c_json_parser_types.h Source File</title>
+<title>C JSON Parser: c_json_parser_types.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,69 +81,72 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef _C_JSON_PARSER_TYPES_H_</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define _C_JSON_PARSER_TYPES_H_</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">enum</span> _JSONType;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a>  <a class="code hl_struct" href="struct___j_s_o_n_object.html">JSONObject</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a>   <a class="code hl_struct" href="struct___j_s_o_n_entry.html">JSONEntry</a>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a>   <a class="code hl_struct" href="struct___j_s_o_n_array.html">JSONArray</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a>   <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">typedef</span> <span class="keyword">enum</span>   _JSONType    JSONType;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">enum</span> _JSONType</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    JsonObject,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    String,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Integer,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    Float,</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    Boolean,</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    Array,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    Null</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_array.html">   38</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">size_t</span>              length;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>           *body;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a>  <a class="code hl_struct" href="struct___j_s_o_n_object.html">JSONObject</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a>   <a class="code hl_struct" href="struct___j_s_o_n_entry.html">JSONEntry</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a>   <a class="code hl_struct" href="struct___j_s_o_n_array.html">JSONArray</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a>   <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">typedef</span> <span class="keyword">enum</span>   <a class="code hl_enumeration" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a>    JSONType;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">   33</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    JsonObject,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    String,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    Integer,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    Float,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    Boolean,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    Array,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Null</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_object.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">size_t</span>              entries_length;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_struct" href="struct___j_s_o_n_entry.html">JSONEntry</a>           *entries;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="union__json__values.html">   50</a></span><span class="keyword">union </span><a class="code hl_union" href="union__json__values.html">_json_values</a> {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_struct" href="struct___j_s_o_n_array.html">JSONArray</a>           array;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">double</span>              float_value;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>           integer_value;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_struct" href="struct___j_s_o_n_object.html">JSONObject</a>          json_object;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">char</span>                *string_value;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">int</span>                 boolean_value;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">int</span>                 is_null;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_value.html">   60</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    JSONType            type;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">union </span><a class="code hl_union" href="union__json__values.html">_json_values</a>  value;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_entry.html">   66</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">char</span>                *name;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>           value;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astruct___j_s_o_n_array_html"><div class="ttname"><a href="struct___j_s_o_n_array.html">_JSONArray</a></div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:39</div></div>
-<div class="ttc" id="astruct___j_s_o_n_entry_html"><div class="ttname"><a href="struct___j_s_o_n_entry.html">_JSONEntry</a></div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:67</div></div>
-<div class="ttc" id="astruct___j_s_o_n_object_html"><div class="ttname"><a href="struct___j_s_o_n_object.html">_JSONObject</a></div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:45</div></div>
-<div class="ttc" id="astruct___j_s_o_n_value_html"><div class="ttname"><a href="struct___j_s_o_n_value.html">_JSONValue</a></div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:61</div></div>
-<div class="ttc" id="aunion__json__values_html"><div class="ttname"><a href="union__json__values.html">_json_values</a></div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:50</div></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_array.html">   48</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_array.html">_JSONArray</a> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">size_t</span>              length;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>           *body;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_object.html">   58</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_object.html">_JSONObject</a></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">size_t</span>              entries_length;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_struct" href="struct___j_s_o_n_entry.html">JSONEntry</a>           *entries;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="union__json__values.html">   68</a></span><span class="keyword">union </span><a class="code hl_union" href="union__json__values.html">_json_values</a> {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_struct" href="struct___j_s_o_n_array.html">JSONArray</a>           array;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">double</span>              float_value;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>           integer_value;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_struct" href="struct___j_s_o_n_object.html">JSONObject</a>          json_object;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">char</span>                *string_value;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">int</span>                 boolean_value;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">int</span>                 is_null;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_value.html">   82</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_value.html">_JSONValue</a> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    JSONType            type;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">union </span><a class="code hl_union" href="union__json__values.html">_json_values</a>  value;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="struct___j_s_o_n_entry.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct___j_s_o_n_entry.html">_JSONEntry</a></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">char</span>                *name;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_struct" href="struct___j_s_o_n_value.html">JSONValue</a>           value;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ac__json__parser__types_8h_html_a348810079ad1d55ce2743df17b77ce3e"><div class="ttname"><a href="c__json__parser__types_8h.html#a348810079ad1d55ce2743df17b77ce3e">_JSONType</a></div><div class="ttdeci">_JSONType</div><div class="ttdoc">Enumeration for identifying the JSON value type.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:34</div></div>
+<div class="ttc" id="astruct___j_s_o_n_array_html"><div class="ttname"><a href="struct___j_s_o_n_array.html">_JSONArray</a></div><div class="ttdoc">Array of JSON values.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:49</div></div>
+<div class="ttc" id="astruct___j_s_o_n_entry_html"><div class="ttname"><a href="struct___j_s_o_n_entry.html">_JSONEntry</a></div><div class="ttdoc">Pair of string and value for JSON objects.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:93</div></div>
+<div class="ttc" id="astruct___j_s_o_n_object_html"><div class="ttname"><a href="struct___j_s_o_n_object.html">_JSONObject</a></div><div class="ttdoc">Array of entries.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:59</div></div>
+<div class="ttc" id="astruct___j_s_o_n_value_html"><div class="ttname"><a href="struct___j_s_o_n_value.html">_JSONValue</a></div><div class="ttdoc">Value and type of the object.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:83</div></div>
+<div class="ttc" id="aunion__json__values_html"><div class="ttname"><a href="union__json__values.html">_json_values</a></div><div class="ttdoc">Union of the different types a JSON object can be.</div><div class="ttdef"><b>Definition</b> c_json_parser_types.h:68</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

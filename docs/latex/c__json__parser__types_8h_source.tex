@@ -1,68 +1,70 @@
 \doxysection{c\+\_\+json\+\_\+parser\+\_\+types.\+h}
-\hypertarget{c__json__parser__types_8h_source}{}\label{c__json__parser__types_8h_source}\index{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser\_types.h@{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser\_types.h}}
+\hypertarget{c__json__parser__types_8h_source}{}\label{c__json__parser__types_8h_source}\index{c\_json\_parser\_types.h@{c\_json\_parser\_types.h}}
 \mbox{\hyperlink{c__json__parser__types_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ \_C\_JSON\_PARSER\_TYPES\_H\_}}
 \DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ \_C\_JSON\_PARSER\_TYPES\_H\_}}
 \DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{keyword}{enum}\ \_JSONType;}
-\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}};}
-\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}};}
-\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}};}
-\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}};}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}}\ \ \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}};}
-\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_entry}{JSONEntry}};}
-\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}};}
-\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}};}
-\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \ \ \_JSONType\ \ \ \ JSONType;}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{enum}\ \_JSONType}
-\DoxyCodeLine{00028\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ JsonObject,}
-\DoxyCodeLine{00030\ \ \ \ \ String,}
-\DoxyCodeLine{00031\ \ \ \ \ Integer,}
-\DoxyCodeLine{00032\ \ \ \ \ Float,}
-\DoxyCodeLine{00033\ \ \ \ \ Boolean,}
-\DoxyCodeLine{00034\ \ \ \ \ Array,}
-\DoxyCodeLine{00035\ \ \ \ \ Null}
-\DoxyCodeLine{00036\ \};}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}}\ }
-\DoxyCodeLine{00039\ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ length;}
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ \ \ \ \ \ \ \ \ \ \ *body;}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\_JSONType}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}}\ \ \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_entry}{JSONEntry}};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}}\ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \ \ \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\_JSONType}}\ \ \ \ JSONType;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\_JSONType}}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ JsonObject,}
+\DoxyCodeLine{00036\ \ \ \ \ String,}
+\DoxyCodeLine{00037\ \ \ \ \ Integer,}
+\DoxyCodeLine{00038\ \ \ \ \ Float,}
+\DoxyCodeLine{00039\ \ \ \ \ Boolean,}
+\DoxyCodeLine{00040\ \ \ \ \ Array,}
+\DoxyCodeLine{00041\ \ \ \ \ Null}
 \DoxyCodeLine{00042\ \};}
 \DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}}}
-\DoxyCodeLine{00045\ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ entries\_length;}
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_entry}{JSONEntry}}\ \ \ \ \ \ \ \ \ \ \ *entries;}
-\DoxyCodeLine{00048\ \};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{union\ }\mbox{\hyperlink{union__json__values}{\_json\_values}}\ \{}
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}}\ \ \ \ \ \ \ \ \ \ \ array;}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ float\_value;}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ integer\_value;}
-\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}}\ \ \ \ \ \ \ \ \ \ json\_object;}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *string\_value;}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boolean\_value;}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_null;}
-\DoxyCodeLine{00058\ \};}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}}\ }
-\DoxyCodeLine{00061\ \{}
-\DoxyCodeLine{00062\ \ \ \ \ JSONType\ \ \ \ \ \ \ \ \ \ \ \ type;}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{union__json__values}{\_json\_values}}\ \ value;}
-\DoxyCodeLine{00064\ \};}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}}}
-\DoxyCodeLine{00067\ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *name;}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ \ \ \ \ \ \ \ \ \ \ value;}
-\DoxyCodeLine{00070\ \};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_array}{\_JSONArray}}\ }
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ length;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ \ \ \ \ \ \ \ \ \ \ *body;}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_object}{\_JSONObject}}}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ entries\_length;}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_entry}{JSONEntry}}\ \ \ \ \ \ \ \ \ \ \ *entries;}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{union\ }\mbox{\hyperlink{union__json__values}{\_json\_values}}\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}}\ \ \ \ \ \ \ \ \ \ \ array;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ float\_value;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ integer\_value;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}}\ \ \ \ \ \ \ \ \ \ json\_object;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *string\_value;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boolean\_value;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_null;}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_value}{\_JSONValue}}\ }
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ JSONType\ \ \ \ \ \ \ \ \ \ \ \ type;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{union__json__values}{\_json\_values}}\ \ value;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___j_s_o_n_entry}{\_JSONEntry}}}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *name;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}}\ \ \ \ \ \ \ \ \ \ \ value;}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

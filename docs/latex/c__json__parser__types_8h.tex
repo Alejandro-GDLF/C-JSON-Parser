@@ -1,23 +1,40 @@
-\doxysection{C\+:/tmp/\+C-\/\+JSON-\/\+Parser/c\+\_\+json\+\_\+parser/headers/c\+\_\+json\+\_\+parser\+\_\+types.h File Reference}
-\hypertarget{c__json__parser__types_8h}{}\label{c__json__parser__types_8h}\index{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser\_types.h@{C:/tmp/C-\/JSON-\/Parser/c\_json\_parser/headers/c\_json\_parser\_types.h}}
+\doxysection{c\+\_\+json\+\_\+parser\+\_\+types.\+h File Reference}
+\hypertarget{c__json__parser__types_8h}{}\label{c__json__parser__types_8h}\index{c\_json\_parser\_types.h@{c\_json\_parser\_types.h}}
 
 
 Header file to describe JSON Parser types.  
 
 
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for c\+\_\+json\+\_\+parser\+\_\+types.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{c__json__parser__types_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{c__json__parser__types_8h__dep__incl}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct___j_s_o_n_array}{\+\_\+\+JSONArray}}
-\item 
+\begin{DoxyCompactList}\small\item\em Array of JSON values. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct___j_s_o_n_object}{\+\_\+\+JSONObject}}
-\item 
+\begin{DoxyCompactList}\small\item\em Array of entries. \end{DoxyCompactList}\item 
 union \mbox{\hyperlink{union__json__values}{\+\_\+json\+\_\+values}}
-\item 
+\begin{DoxyCompactList}\small\item\em Union of the different types a JSON object can be. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct___j_s_o_n_value}{\+\_\+\+JSONValue}}
-\item 
+\begin{DoxyCompactList}\small\item\em Value and type of the object. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct___j_s_o_n_entry}{\+\_\+\+JSONEntry}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pair of string and value for JSON objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,13 +51,12 @@ typedef struct \mbox{\hyperlink{struct___j_s_o_n_array}{\+\_\+\+JSONArray}} {\bf
 typedef struct \mbox{\hyperlink{struct___j_s_o_n_value}{\+\_\+\+JSONValue}} {\bfseries JSONValue}
 \item 
 \Hypertarget{c__json__parser__types_8h_abd594066afb54101385de2ac29b8af37}\label{c__json__parser__types_8h_abd594066afb54101385de2ac29b8af37} 
-typedef enum \+\_\+\+JSONType {\bfseries JSONType}
+typedef enum \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\+\_\+\+JSONType}} {\bfseries JSONType}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}\label{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e} 
-enum {\bfseries \+\_\+\+JSONType} \{ \newline
+enum \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\+\_\+\+JSONType}} \{ \newline
 {\bfseries Json\+Object}
 , {\bfseries String}
 , {\bfseries Integer}
@@ -50,7 +66,7 @@ enum {\bfseries \+\_\+\+JSONType} \{ \newline
 , {\bfseries Array}
 , {\bfseries Null}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enumeration for identifying the JSON value type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -68,3 +84,16 @@ Header file to describe JSON Parser types.
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2023 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}\label{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e} 
+\index{c\_json\_parser\_types.h@{c\_json\_parser\_types.h}!\_JSONType@{\_JSONType}}
+\index{\_JSONType@{\_JSONType}!c\_json\_parser\_types.h@{c\_json\_parser\_types.h}}
+\doxysubsubsection{\texorpdfstring{\_JSONType}{\_JSONType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{c__json__parser__types_8h_a348810079ad1d55ce2743df17b77ce3e}{\+\_\+\+JSONType}}}
+
+
+
+Enumeration for identifying the JSON value type. 
+

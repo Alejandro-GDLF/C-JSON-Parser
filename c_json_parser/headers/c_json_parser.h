@@ -56,6 +56,8 @@ const void* get_value(const JSONValue* value);
  */
 const JSONValue* get_key_value(const JSONValue* json_object, const char* field_name, void* error);
 
+/******************************************************************************/
+
 // Specific functions
 /**
  * @brief Get the integer value of a field.

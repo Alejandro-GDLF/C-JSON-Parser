@@ -1,0 +1,316 @@
+\doxysection{c\+\_\+json\+\_\+parser.\+h File Reference}
+\hypertarget{c__json__parser_8h}{}\label{c__json__parser_8h}\index{c\_json\_parser.h@{c\_json\_parser.h}}
+
+
+Public header for c json parser public functions.  
+
+
+{\ttfamily \#include \"{}c\+\_\+json\+\_\+parser\+\_\+types.\+h\"{}}\newline
+Include dependency graph for c\+\_\+json\+\_\+parser.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{c__json__parser_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{c__json__parser_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68}\label{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68} 
+typedef \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} {\bfseries JSONRoot}
+\begin{DoxyCompactList}\small\item\em JSON root node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{c__json__parser_8h_a4e0baf55889969654a8b69968a9d90f1}{parse\+\_\+json}} (\mbox{\hyperlink{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68}{JSONRoot}} \texorpdfstring{$\ast$}{*}root, char \texorpdfstring{$\ast$}{*}string\+\_\+to\+\_\+parse)
+\begin{DoxyCompactList}\small\item\em Parses a JSON string. \end{DoxyCompactList}\item 
+JSONType \mbox{\hyperlink{c__json__parser_8h_a6dd1fb04ce12680bd642d4f7ab02a74f}{get\+\_\+type}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}value)
+\begin{DoxyCompactList}\small\item\em Get the type of the JSON value object. \end{DoxyCompactList}\item 
+const void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_a994df8efc00065c0b76a5006b3a8533c}{get\+\_\+value}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}value)
+\begin{DoxyCompactList}\small\item\em Get the value of the JSON object. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_aa1c67eeddcbd66a4974545b56e746328}{get\+\_\+key\+\_\+value}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the value from an object given its key. \end{DoxyCompactList}\item 
+const long long \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_aa811cf3c0921d273685284a8ef0991ab}{get\+\_\+integer}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the integer value of a field. \end{DoxyCompactList}\item 
+const double \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_aa9aac280df541978c269c9a773428586}{get\+\_\+float}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the float value of a field. \end{DoxyCompactList}\item 
+const int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_abbfc095ae68e67cd6e9ffb46816ab14d}{get\+\_\+boolean}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the boolean value of a field. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_a061f89b657636594773764cc2515391d}{get\+\_\+string}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the string value of a field. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_a56158d720b59f105c1a0e3c1bd4051ea}{get\+\_\+json\+\_\+object}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the JSON object of a field. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{c__json__parser_8h_ab813ea13ec58e978b71cfaec814ebd43}{get\+\_\+array}} (const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}json\+\_\+object, const char \texorpdfstring{$\ast$}{*}field\+\_\+name, void \texorpdfstring{$\ast$}{*}error)
+\begin{DoxyCompactList}\small\item\em Get the array of a field. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{c__json__parser_8h_aa7d0b3b4581a9c0533476c705efe4005}{c\+\_\+json\+\_\+free}} (\mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Frees JSON object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Public header for c json parser public functions. 
+
+\begin{DoxyAuthor}{Author}
+\href{mailto:Alejandro-GDLF@github.com}{\texttt{ Alejandro-\/\+GDLF@github.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/07-\/25
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{c__json__parser_8h_aa7d0b3b4581a9c0533476c705efe4005}\label{c__json__parser_8h_aa7d0b3b4581a9c0533476c705efe4005} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!c\_json\_free@{c\_json\_free}}
+\index{c\_json\_free@{c\_json\_free}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{c\_json\_free()}{c\_json\_free()}}
+{\footnotesize\ttfamily void c\+\_\+json\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{root }\end{DoxyParamCaption})}
+
+
+
+Frees JSON object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em root} & JSON object to free. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{c__json__parser_8h_ab813ea13ec58e978b71cfaec814ebd43}\label{c__json__parser_8h_ab813ea13ec58e978b71cfaec814ebd43} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_array@{get\_array}}
+\index{get\_array@{get\_array}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_array()}{get\_array()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct___j_s_o_n_array}{JSONArray}} \texorpdfstring{$\ast$}{*} get\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the array of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the integer value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_abbfc095ae68e67cd6e9ffb46816ab14d}\label{c__json__parser_8h_abbfc095ae68e67cd6e9ffb46816ab14d} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_boolean@{get\_boolean}}
+\index{get\_boolean@{get\_boolean}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_boolean()}{get\_boolean()}}
+{\footnotesize\ttfamily const int \texorpdfstring{$\ast$}{*} get\+\_\+boolean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the boolean value of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the boolean value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_aa9aac280df541978c269c9a773428586}\label{c__json__parser_8h_aa9aac280df541978c269c9a773428586} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_float@{get\_float}}
+\index{get\_float@{get\_float}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_float()}{get\_float()}}
+{\footnotesize\ttfamily const double \texorpdfstring{$\ast$}{*} get\+\_\+float (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the float value of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the float value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_aa811cf3c0921d273685284a8ef0991ab}\label{c__json__parser_8h_aa811cf3c0921d273685284a8ef0991ab} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_integer@{get\_integer}}
+\index{get\_integer@{get\_integer}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_integer()}{get\_integer()}}
+{\footnotesize\ttfamily const long long \texorpdfstring{$\ast$}{*} get\+\_\+integer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the integer value of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the integer value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_a56158d720b59f105c1a0e3c1bd4051ea}\label{c__json__parser_8h_a56158d720b59f105c1a0e3c1bd4051ea} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_json\_object@{get\_json\_object}}
+\index{get\_json\_object@{get\_json\_object}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_json\_object()}{get\_json\_object()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct___j_s_o_n_object}{JSONObject}} \texorpdfstring{$\ast$}{*} get\+\_\+json\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the JSON object of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the JSON object if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_aa1c67eeddcbd66a4974545b56e746328}\label{c__json__parser_8h_aa1c67eeddcbd66a4974545b56e746328} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_key\_value@{get\_key\_value}}
+\index{get\_key\_value@{get\_key\_value}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_key\_value()}{get\_key\_value()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*} get\+\_\+key\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the value from an object given its key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_a061f89b657636594773764cc2515391d}\label{c__json__parser_8h_a061f89b657636594773764cc2515391d} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_string@{get\_string}}
+\index{get\_string@{get\_string}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_string()}{get\_string()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} get\+\_\+string (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{json\+\_\+object,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{field\+\_\+name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the string value of a field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+\_\+object} & JSON object to consult. \\
+\hline
+{\em field\+\_\+name} & JSON key string. \\
+\hline
+{\em error} & Error produced while consulting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the string value if success. 
+
+NULL if failure. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_a6dd1fb04ce12680bd642d4f7ab02a74f}\label{c__json__parser_8h_a6dd1fb04ce12680bd642d4f7ab02a74f} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_type@{get\_type}}
+\index{get\_type@{get\_type}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_type()}{get\_type()}}
+{\footnotesize\ttfamily JSONType get\+\_\+type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{value }\end{DoxyParamCaption})}
+
+
+
+Get the type of the JSON value object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & JSON value which type is retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON type of the value passed. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_a994df8efc00065c0b76a5006b3a8533c}\label{c__json__parser_8h_a994df8efc00065c0b76a5006b3a8533c} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}}
+{\footnotesize\ttfamily const void \texorpdfstring{$\ast$}{*} get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct___j_s_o_n_value}{JSONValue}} \texorpdfstring{$\ast$}{*}}]{value }\end{DoxyParamCaption})}
+
+
+
+Get the value of the JSON object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & JSON value which value is retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the value. 
+\end{DoxyReturn}
+\Hypertarget{c__json__parser_8h_a4e0baf55889969654a8b69968a9d90f1}\label{c__json__parser_8h_a4e0baf55889969654a8b69968a9d90f1} 
+\index{c\_json\_parser.h@{c\_json\_parser.h}!parse\_json@{parse\_json}}
+\index{parse\_json@{parse\_json}!c\_json\_parser.h@{c\_json\_parser.h}}
+\doxysubsubsection{\texorpdfstring{parse\_json()}{parse\_json()}}
+{\footnotesize\ttfamily int parse\+\_\+json (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{c__json__parser_8h_aea5a9b818990978918bf8dcb5ced3a68}{JSONRoot}} \texorpdfstring{$\ast$}{*}}]{root,  }\item[{char \texorpdfstring{$\ast$}{*}}]{string\+\_\+to\+\_\+parse }\end{DoxyParamCaption})}
+
+
+
+Parses a JSON string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em root} & JSON object from the string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em string\+\_\+to\+\_\+parse} & String to parse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if error occurred 
+
+0 if successful 
+\end{DoxyReturn}

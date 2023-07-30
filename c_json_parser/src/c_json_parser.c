@@ -1,3 +1,14 @@
+/**
+ * @file c_json_parser.c
+ * @author Alejandro-GDLF@github.com
+ * @brief Source code file for c_json_parser
+ * @version 0.1
+ * @date 2023-07-25
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>

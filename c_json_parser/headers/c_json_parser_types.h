@@ -14,23 +14,23 @@
 
 #include <stdlib.h>
 
-enum _JSONType;
-struct _JSONArray;
-struct _JSONObject;
-struct _JSONValue;
-struct _JSONEntry;
+enum    JSONType;
+struct  JSONArray;
+struct  JSONObject;
+struct  JSONValue;
+struct  JSONEntry;
 
-typedef struct _JSONObject  JSONObject;
-typedef struct _JSONEntry   JSONEntry;
-typedef struct _JSONArray   JSONArray;
-typedef struct _JSONValue   JSONValue;
-typedef enum   _JSONType    JSONType;
+typedef struct JSONObject  JSONObject;
+typedef struct JSONEntry   JSONEntry;
+typedef struct JSONArray   JSONArray;
+typedef struct JSONValue   JSONValue;
+typedef enum   JSONType    JSONType;
 
 /**
  * @brief Enumeration for identifying the JSON value type.
  * 
  */
-enum _JSONType
+enum JSONType
 {
     JsonObject,
     String,
@@ -45,7 +45,7 @@ enum _JSONType
  * @brief Array of JSON values.
  * 
  */
-struct _JSONArray 
+struct JSONArray 
 {
     size_t              length;
     JSONValue           *body;
@@ -55,41 +55,35 @@ struct _JSONArray
  * @brief Array of entries.
  * 
  */
-struct _JSONObject
+struct JSONObject
 {
     size_t              entries_length;
     JSONEntry           *entries;
 };
 
 /**
- * @brief Union of the different types a JSON object can be.
- * 
- */
-union _json_values {
-    JSONArray           array;
-    double              float_value;
-    long long           integer_value;
-    JSONObject          json_object;
-    char                *string_value;
-    int                 boolean_value;
-    int                 is_null;
-};
-
-/**
  * @brief Value and type of the object.
  * 
  */
-struct _JSONValue 
+struct JSONValue 
 {
     JSONType            type;
-    union _json_values  value;
+    union {
+        JSONArray   array;
+        double      float_value;
+        long long   integer_value;
+        JSONObject  json_object;
+        char        *string_value;
+        int         boolean_value;
+        int         is_null;
+    }                   value;
 };
 
 /**
  * @brief Pair of string and value for JSON objects.
  * 
  */
-struct _JSONEntry
+struct JSONEntry
 {
     char                *name;
     JSONValue           value;

@@ -35,6 +35,13 @@ release: obj/c_json_parser.o
 obj/c_json_parser.o: $(HEADERS) $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC) -o $@ $(PRODFLAGS)
 
+
+bench: bin/benchmarking
+
+bin/benchmarking: $(OBJ) benchmarking/benchmarking.c benchmarking/gettime.h
+	$(CC) $(CFLAGS) $^ -o $@
+
+
 clean:
 	rm bin/*
 	rm obj/*

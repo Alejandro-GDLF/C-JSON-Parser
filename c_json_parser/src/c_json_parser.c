@@ -135,7 +135,7 @@ void c_json_free (JSONValue *value)
         free((void*)value->value.string_value);
 }
 
-//************************** Private functions *********************************
+//************************** Static functions *********************************
 
 #ifndef ARRAY_BUFFER_LENGTH
 #define ARRAY_BUFFER_LENGTH 10
@@ -270,8 +270,13 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
     if( parse(&(json_item->value), next+1, &next) == -1) return -1;
     while( isspace(*next) ) next++;
 
-    if( end_item != NULL) 
-        *end_item = next;
+    if( end_item == NULL)
+        return 0;
+
+    *end_item = next;
+
+    if( *next == ';' )
+        *end_item += 1;
     
     return 0;
 }
@@ -281,22 +286,22 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     if( *begin_item != '{') return -1;  // Not a JSON object
     if( object == NULL ) return -1;     // Null pointer to the type
 
-    object->entries_length = 0;
-    size_t max_length = JOBJECT_BUFFER_LENGTH;
-
-    object->entries = (JSONEntry*) malloc(sizeof(JSONEntry) * max_length);
-    if( object->entries == NULL ) return -1;
-
     char* next = begin_item + 1;
     while( isspace(*next) ) next++;
 
-    if( *next == '}' )
-        goto finish;
-
+    // Malformed JSON Object
     if( *next == '\0')
         return -1;
 
-    next--;
+    // Empty JSON Object
+    object->entries_length = 0;
+    if( *next == '}' )
+        goto finish;
+
+    size_t max_length = JOBJECT_BUFFER_LENGTH;
+    object->entries = (JSONEntry*) malloc(sizeof(JSONEntry) * max_length);
+    if( object->entries == NULL ) 
+        return -1;
 
     while( *next != '}' && *next != '\0' )
     {
@@ -310,7 +315,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
             object->entries = new_ptr;
         }
 
-        if (parse_item( &object->entries[object->entries_length] , next + 1, &next ) == -1 ) return -1;
+        if (parse_item( &object->entries[object->entries_length] , next, &next ) == -1 ) return -1;
         object->entries_length++;
     }
 
@@ -318,7 +323,6 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
 
     finish:
 
-    // TODO: shrink to fit
     #ifdef SHRINK_TO_FIT
     {
         JSONEntry *reallocated_entries = realloc(object->entries, object->entries_length * sizeof(JSONEntry));

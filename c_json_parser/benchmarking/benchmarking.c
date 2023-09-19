@@ -15,14 +15,26 @@ int main()
 
     for (int i = 0; i < NUM_SAMPLES; i++ )
     {
-        printf("File_name: %s\n", samples_files[i]);
         char* contents = read_file(samples_files[i]);
         if (contents == NULL )
             continue;
+        
+        JSONRoot root;
+        double start = get_time();
+        if (parse_json(&root, contents) < 0 )
+        {
+            printf("Error in json parsing.\n");
+        }
+        else {
+            printf("Success.\n");
+        }
 
-        printf("%s\n\n", contents);
+        double end = get_time();
+
+        printf("Time elapsed for %s = %f\n",samples_files[i], end - start);
 
         free(contents);
+        c_json_free(&root);
     }
 
     return 0;
@@ -45,7 +57,7 @@ char* read_file(const char* file_name)
 
     char* contents = malloc(file_size);
 
-    fgets(contents, file_size + 1, fptr);
+    fread(contents, file_size, 1, fptr);
 
     fclose(fptr);
 
@@ -68,7 +80,7 @@ long int get_file_size(FILE *fptr)
         fsetpos(fptr, &pos);
 
     else
-        fseek(fptr, 0, SEEK_SET);
+        rewind(fptr);
 
     return size;
 }

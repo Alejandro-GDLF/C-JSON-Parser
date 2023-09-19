@@ -278,8 +278,8 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
 
 static int parse_object( JSONObject* object, char* begin_item, char** end_item ) 
 {
-    if( *begin_item != '{') return -1;
-    if( object == NULL ) return -1;
+    if( *begin_item != '{') return -1;  // Not a JSON object
+    if( object == NULL ) return -1;     // Null pointer to the type
 
     object->entries_length = 0;
     size_t max_length = JOBJECT_BUFFER_LENGTH;
@@ -290,8 +290,11 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     char* next = begin_item + 1;
     while( isspace(*next) ) next++;
 
-    if( *next == '}' || *next == '\0' )
+    if( *next == '}' )
         goto finish;
+
+    if( *next == '\0')
+        return -1;
 
     next--;
 
@@ -318,6 +321,9 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     // TODO: shrink to fit
     #ifdef SHRINK_TO_FIT
     {
+        JSONEntry *reallocated_entries = realloc(object->entries, object->entries_length * sizeof(JSONEntry));
+        if ( reallocated_entries != NULL )
+            object->entries = reallocated_entries;
     }
     #endif
 

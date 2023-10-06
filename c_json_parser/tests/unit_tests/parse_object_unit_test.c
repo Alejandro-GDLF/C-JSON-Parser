@@ -32,7 +32,7 @@ void make_object_test(size_t expected, char input[])
 
 void unit_test_parse_object()
 {
-    char input[N][100] = { "{  }", "{\"something\":3}", "{\"3\":32,\"res\":23}", "{ \"44wfc\":[],\"r1vrve\":[3,2,1] }", "{\"res\": {}}", "{\"fe\":\"fr\", \"ce\": \"fr\"}"};
+    char input[N][100] = { "{  }", "{\"something\":3}", "{\"3\":32,\"res\":23}", "{ \"44wfc\":[],\"r1vrve\":[3,2,1] }", "{\"res\": {}}", "{\"fe\":\"fr\", \"ce\": \"fr\"}", "{\"res\": {\"something\":3}}"};
     size_t expected[N] = {0, 1, 2, 2, 1, 2};
 
     for( int i = 0; i < N; i++ )

@@ -13,6 +13,13 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#ifdef DEBUG
+#define LOG(x) printf(x)
+#include <stdio.h>
+#elif
+#define LOG(x)
+#endif
+
 #include "../headers/c_json_parser.h"
 
 // ******************* Static functions ***************************************
@@ -34,6 +41,7 @@ int parse_json(JSONRoot* root, char* string_to_parse)
     if( parse((JSONValue*) root, string_to_parse, NULL) == -1)
     {
         c_json_free(root);
+        LOG("Parse error\n");
         return -1;
     }
     
@@ -154,7 +162,12 @@ void c_json_free (JSONValue *value)
 
 static int parse(JSONValue* object, char* string_to_parse, char** end_string) 
 {
-    if( object == NULL ) return -1;
+    if( object == NULL )
+    {
+        LOG("NULL object pointer\n");
+        return -1;
+    }
+
     while( isspace(*string_to_parse) ) string_to_parse++;
 
     char c = (*string_to_parse);
@@ -192,6 +205,7 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
         return parse_null(&object->value.is_null, string_to_parse, end_string);
     }
 
+    LOG("Not supported character\n");
     return -1;
 }
 
@@ -223,7 +237,11 @@ static int parse_string( char** substring, char* begin_string, char** end_string
 {
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
     if( begin_string == NULL ) return -1;
-    if( (*begin_string) != STRING_ENCAPSULATOR ) return -1;
+    if( (*begin_string) != STRING_ENCAPSULATOR )
+    {
+        LOG("String: Not string encapsulator\n");
+        return -1;
+    }
 
     // Find end of string
     char* _end_string = begin_string;
@@ -257,17 +275,33 @@ static int parse_string( char** substring, char* begin_string, char** end_string
 
 static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item ) 
 {
-    if( json_item == NULL ) return -1;
+    if( json_item == NULL ) {
+        LOG("NULL JSON item\n");
+        return -1;
+    }
 
     char* next = begin_item;
     while( isspace(*next) ) next++;
 
-    if( parse_string(&(json_item->name), next, &next ) == -1 ) return -1;
+    if( parse_string(&(json_item->name), next, &next ) == -1 ) 
+    {
+        LOG("JSON item: Can't parse string\n");
+        return -1;
+    }
 
     while( isspace(*next) ) next++;
-    if( *next != ':' ) return -1;
+    if( *next != ':' )
+    {
+        LOG("Malformed JSON item\n");
+        return -1;
+    }
 
-    if( parse(&(json_item->value), next+1, &next) == -1) return -1;
+    if( parse(&(json_item->value), next+1, &next) == -1)
+    {
+        LOG("JSON item: can't parse JSON value\n");
+        return -1;
+    }
+
     while( isspace(*next) ) next++;
 
     if( end_item == NULL)
@@ -283,15 +317,29 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
 
 static int parse_object( JSONObject* object, char* begin_item, char** end_item ) 
 {
-    if( *begin_item != '{') return -1;  // Not a JSON object
-    if( object == NULL ) return -1;     // Null pointer to the type
+    // Not a JSON object
+    if( *begin_item != '{') 
+    {
+        LOG("Not a JSON object\n");
+        return -1;
+    }
+
+    // Null pointer to the type
+    if( object == NULL )
+    {
+        LOG("NULL object pointer\n");
+        return -1;
+    }
 
     char* next = begin_item + 1;
     while( isspace(*next) ) next++;
 
     // Malformed JSON Object
     if( *next == '\0')
+    {
+        LOG("Malformed JSON object\n");
         return -1;
+    }
 
     // Empty JSON Object
     object->entries_length = 0;
@@ -301,7 +349,10 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     size_t max_length = JOBJECT_BUFFER_LENGTH;
     object->entries = (JSONEntry*) malloc(sizeof(JSONEntry) * max_length);
     if( object->entries == NULL ) 
+    {
+        LOG("Couldn't allocate memory for JSOn Object entries\n");
         return -1;
+    }
 
     while( *next != '}' && *next != '\0' )
     {
@@ -310,8 +361,11 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
             max_length *= 2;
             JSONEntry* new_ptr = realloc(object->entries, max_length);
             if( new_ptr == NULL ) 
+            {
+                LOG("Unable to allocate more memory\n");
                 return -1;
-
+            }
+                
             object->entries = new_ptr;
         }
 
@@ -319,7 +373,11 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
         object->entries_length++;
     }
 
-    if( *next != '}' ) return -1;
+    if( *next != '}' )
+    {
+        LOG("Not final object. Malformed\n");
+        return -1;
+    }
 
     finish:
 

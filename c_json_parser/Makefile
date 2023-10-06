@@ -15,32 +15,28 @@ SUBMITNAME=c_json_parser
 
 all: obj/c_json_parser_debug.o
 
-obj/c_json_parser_debug.o: $(HEADERS) $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC) -o $@
-
+release: obj/c_json_parser.o
 
 unit: bin/unit_tests
 
-bin/unit_tests: $(UNIT_TESTS) $(DOBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-
 test:$(TESTS_BIN)
 
-$(TESTS_BIN): $(TESTS) $(DOBJ)
-	$(CC) $(CFLAGS) $< $(DOBJ) -o $@
+bench: bin/benchmarking
 
-release: obj/c_json_parser.o
+obj/c_json_parser_debug.o: $(HEADERS) $(SRC)
+	$(CC) $(CFLAGS) -c $(SRC) -o $@ -DDEBUG
 
 obj/c_json_parser.o: $(HEADERS) $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC) -o $@ $(PRODFLAGS)
 
+bin/unit_tests: $(UNIT_TESTS) $(DOBJ)
+	$(CC) $(CFLAGS) $^ -o $@
 
-bench: bin/benchmarking
+$(TESTS_BIN): $(TESTS) $(DOBJ)
+	$(CC) $(CFLAGS) $< $(DOBJ) -o $@
 
 bin/benchmarking: $(OBJ) benchmarking/benchmarking.c benchmarking/gettime.h
 	$(CC) $(CFLAGS) $^ -o $@
-
 
 clean:
 	rm bin/*

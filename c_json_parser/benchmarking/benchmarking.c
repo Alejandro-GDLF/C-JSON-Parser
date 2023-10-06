@@ -11,6 +11,7 @@ double make_benchmarking(char* string_to_parse);
 
 int main()
 {
+    printf("Making benchmarking...\n\n");
     const char *samples_files[NUM_SAMPLES] = {"./benchmarking/sample1.json", "./benchmarking/sample2.json"};
 
     for (int i = 0; i < NUM_SAMPLES; i++ )
@@ -18,6 +19,8 @@ int main()
         char* contents = read_file(samples_files[i]);
         if (contents == NULL )
             continue;
+
+        printf("Contents read from %s\n", samples_files[i]);
         
         JSONRoot root;
         double start = get_time();

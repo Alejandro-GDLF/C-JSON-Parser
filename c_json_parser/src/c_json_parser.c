@@ -20,7 +20,7 @@
 #define LOG(x, ...)
 #endif
 
-#include "../headers/c_json_parser.h"
+#include "c_json_parser.h"
 
 // ******************* Static functions ***************************************
 static int parse(JSONValue*, char*, char**);

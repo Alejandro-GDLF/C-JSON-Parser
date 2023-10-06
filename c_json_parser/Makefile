@@ -1,17 +1,4 @@
-CC=gcc
-CFLAGS=-g -Wall -Wextra
-PRODFLAGS= -Wl,--strip-all -O2
-
-HEADERS=headers/c_json_parser.h headers/c_json_parser_types.h
-SRC=src/c_json_parser.c
-OBJ=obj/c_json_parser.o
-DOBJ=obj/c_json_parser_debug.o
-
-UNIT_TESTS=$(wildcard tests/unit_tests/*.c)
-TESTS=$(wildcard tests/tests/*.c)
-TESTS_BIN=$(patsubst tests/tests/%.c, bin/%, $(TESTS))
-
-SUBMITNAME=c_json_parser
+@include config.mk
 
 all: obj/c_json_parser_debug.o
 

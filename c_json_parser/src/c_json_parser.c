@@ -222,13 +222,13 @@ static int remove_escaped_chars(char* string)
  * @details This functions recieves a pointer to a string 
  * enclosed in " chars like so: "<string to parse>".
  * 
- * @pre string_to_parse must be pointing to a " character.
+ * @pre substring must not be NULL
  * @post string enclosed with null char appended and pointer to the 
  * end of the string + 1.
  * 
  * @param[out] substring substring extracted.
- * @param[in]  begin_string pointer to a " character that contains a string.
- * @param[out] end_string pointer to the first char after string representation.
+ * @param[in]  begin_string pointer to a string wanted to parse.
+ * @param[out] end_string pointer to the first char after string representation. Can be NULL
  * 
  * @return 0 success
  * @return -1 error has occured
@@ -236,10 +236,17 @@ static int remove_escaped_chars(char* string)
 static int parse_string( char** substring, char* begin_string, char** end_string ) 
 {
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
-    if( begin_string == NULL ) return -1;
+    if( begin_string == NULL ) 
+    {
+        LOG("String: begin string NULL");
+        return -1;
+    }
+
+    while(isspace(*begin_string)) begin_string++; // Feeding white-space chars
+
     if( (*begin_string) != STRING_ENCAPSULATOR )
     {
-        LOG("String: Not string encapsulator\n");
+        LOG("String: No string encapsulator\n");
         return -1;
     }
 
@@ -248,9 +255,12 @@ static int parse_string( char** substring, char* begin_string, char** end_string
     do
     {
         _end_string = strchr(_end_string + 1, (int) STRING_ENCAPSULATOR );
-        if( _end_string == NULL ) return -1;
-
-    } while(*( _end_string - 1 ) == '\\');
+        if( _end_string == NULL )
+        {
+            LOG("String: Malformed string\n");
+            return -1;
+        }
+    } while(*( _end_string - 1 ) == '\\'); // Repeat if " char is escaped.
 
     // Get the string length
     int substr_length_int = _end_string - (begin_string + 1);

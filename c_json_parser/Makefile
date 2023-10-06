@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-g -Wall -Wextra
-PRODFLAGS= -Wl,--strip-all
+PRODFLAGS= -Wl,--strip-all -O2
 
 HEADERS=headers/c_json_parser.h headers/c_json_parser_types.h
 SRC=src/c_json_parser.c

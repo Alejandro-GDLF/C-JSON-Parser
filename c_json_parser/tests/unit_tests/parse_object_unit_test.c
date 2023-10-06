@@ -2,10 +2,11 @@
 
 #include "../../headers/c_json_parser.h"
 #include "unit_tests.h"
-#define N 6
+#define N 7
 
 void make_object_test(size_t expected, char input[])
 {
+    printf("\nTest: %s\n\n", input);
     JSONRoot root;
     if( parse_json(&root, input) == -1 )
     {
@@ -33,7 +34,7 @@ void make_object_test(size_t expected, char input[])
 void unit_test_parse_object()
 {
     char input[N][100] = { "{  }", "{\"something\":3}", "{\"3\":32,\"res\":23}", "{ \"44wfc\":[],\"r1vrve\":[3,2,1] }", "{\"res\": {}}", "{\"fe\":\"fr\", \"ce\": \"fr\"}", "{\"res\": {\"something\":3}}"};
-    size_t expected[N] = {0, 1, 2, 2, 1, 2};
+    size_t expected[N] = {0, 1, 2, 2, 1, 2, 1};
 
     for( int i = 0; i < N; i++ )
         make_object_test(expected[i], input[i]);

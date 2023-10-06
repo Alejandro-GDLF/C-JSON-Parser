@@ -14,10 +14,10 @@
 #include <stdlib.h>
 
 #ifdef DEBUG
-#define LOG(x) printf(x)
+#define LOG(x, ...) printf(x, ##__VA_ARGS__)
 #include <stdio.h>
-#elif
-#define LOG(x)
+#else
+#define LOG(x, ...)
 #endif
 
 #include "../headers/c_json_parser.h"
@@ -286,12 +286,14 @@ static int parse_string( char** substring, char* begin_string, char** end_string
 static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item ) 
 {
     if( json_item == NULL ) {
-        LOG("NULL JSON item\n");
+        LOG("JSON item: NULL JSON item\n");
         return -1;
     }
 
     char* next = begin_item;
     while( isspace(*next) ) next++;
+
+    LOG("JSON Item: Stopped at char %c\n", *next);
 
     if( parse_string(&(json_item->name), next, &next ) == -1 ) 
     {
@@ -378,6 +380,8 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
                 
             object->entries = new_ptr;
         }
+
+        if( *next == ',') next += 1;
 
         if (parse_item( &object->entries[object->entries_length] , next, &next ) == -1 ) return -1;
         object->entries_length++;

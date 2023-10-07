@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../../headers/c_json_parser.h"
+#include "c_json_parser.h"
 #include "unit_tests.h"
 
 #define N 4

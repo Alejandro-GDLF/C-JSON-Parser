@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../../headers/c_json_parser.h"
+#include "c_json_parser.h"
 #include "unit_tests.h"
 
 void parse_string_unit_test() 

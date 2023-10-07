@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../headers/c_json_parser.h"
+#include "c_json_parser.h"
 
 int main()
 {

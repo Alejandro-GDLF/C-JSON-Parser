@@ -1,4 +1,4 @@
-@include config.mk
+include config.mk
 
 all: obj/c_json_parser_debug.o
 
@@ -16,7 +16,7 @@ obj/c_json_parser_debug.o: $(HEADERS) $(SRC)
 obj/c_json_parser.o: $(HEADERS) $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC) -o $@ $(PRODFLAGS)
 
-bin/unit_tests: $(UNIT_TESTS) $(DOBJ)
+bin/unit_tests: $(UNIT_TESTS) obj/c_json_parser_debug.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(TESTS_BIN): $(TESTS) $(DOBJ)

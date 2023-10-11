@@ -10,6 +10,10 @@ HEADERS=$(wildcard $(HEADERS_DIR)/*.h)
 # Source files
 SRC=$(wildcard $(SRC_DIR)/*.c)
 
+# Object files
+OBJ=./obj/c_json_parser.o
+DOBJ=./obj/c_json_parser_debug.o
+
 # Tests
 UNIT_TESTS=$(wildcard tests/unit_tests/*.c)
 TESTS=$(wildcard tests/tests/*.c)

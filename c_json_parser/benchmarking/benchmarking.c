@@ -38,7 +38,10 @@ int main()
 
         free(contents);
         c_json_free(&root);
+        printf("\n\n\n");
     }
+
+    printf("Ended benchmarking.\n");
 
     return 0;
 }

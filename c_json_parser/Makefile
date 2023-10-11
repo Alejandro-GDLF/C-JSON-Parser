@@ -10,13 +10,13 @@ test:$(TESTS_BIN)
 
 bench: bin/benchmarking
 
-obj/c_json_parser_debug.o: $(HEADERS) $(SRC)
+$(DOBJ): $(HEADERS) $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC) -o $@ -DDEBUG
 
-obj/c_json_parser.o: $(HEADERS) $(SRC)
+$(OBJ): $(HEADERS) $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC) -o $@ $(PRODFLAGS)
 
-bin/unit_tests: $(UNIT_TESTS) obj/c_json_parser_debug.o
+bin/unit_tests: $(UNIT_TESTS) $(DOBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(TESTS_BIN): $(TESTS) $(DOBJ)

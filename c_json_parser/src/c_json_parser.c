@@ -100,41 +100,39 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
 
     char c = (*string_to_parse);
 
-    if( c == JSON_STRING_OPEN)
+    switch(c) 
     {
-        object->type = String;
-        return parse_string(&object->value.string_value, string_to_parse, end_string);
-    }
+        case JSON_STRING_OPEN:
+            object->type = String;
+            return parse_string(&object->value.string_value, string_to_parse, end_string);
+
+        case JSON_ARRAY_OPEN:
+            object->type = Array;
+            return parse_array(&object->value.array, string_to_parse, end_string);
         
-    else if( c == JSON_ARRAY_OPEN) 
-    {
-        object->type = Array;
-        return parse_array(&object->value.array, string_to_parse, end_string);
-    }
-
-    else if ( c == JSON_OBJECT_OPEN) 
-    {
-        object->type = JsonObject;
-        return parse_object(&object->value.json_object, string_to_parse, end_string);
-    }
+        case JSON_OBJECT_OPEN:
+            object->type = JsonObject;
+            return parse_object(&object->value.json_object, string_to_parse, end_string);
         
-    else if( isdigit(c) || c == '-')
-        return parse_number(object, string_to_parse, end_string);
+        case '-':
+            return parse_number(object, string_to_parse, end_string);
+        
+        case 'f':
+        case 't':
+            object->type = Boolean;
+            return parse_boolean(&object->value.boolean_value, string_to_parse, end_string);
 
-    else if( c == 'f' || c == 't')
-    {
-        object->type = Boolean;
-        return parse_boolean(&object->value.boolean_value, string_to_parse, end_string);
-    }
-    
-    else if ( c == 'n') 
-    {
-        object->type = Null;
-        return parse_null(&object->value.is_null, string_to_parse, end_string);
-    }
+        case 'n':
+            object->type = Null;
+            return parse_null(&object->value.is_null, string_to_parse, end_string);
 
-    LOG("Not supported character: %c\n", c);
-    return -1;
+        default:
+            if (isdigit(c))
+                return parse_number(object, string_to_parse, end_string);
+            
+            LOG("Character not supported: %c\n", c);
+            return -1;
+    }
 }
 
 static int remove_escaped_chars(char* string) 

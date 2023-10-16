@@ -12,7 +12,7 @@ double make_benchmarking(char* string_to_parse);
 int main()
 {
     printf("Making benchmarking...\n\n");
-    const char *samples_files[NUM_SAMPLES] = {"./benchmarking/sample1.json", "./benchmarking/sample2.json"};
+    const char *samples_files[NUM_SAMPLES] = {"./benchmarking/sample2.json", "./benchmarking/sample2.json"};
 
     for (int i = 0; i < NUM_SAMPLES; i++ )
     {

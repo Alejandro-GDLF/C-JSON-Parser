@@ -25,3 +25,6 @@ CFLAGS=-g -Wall -Wextra -iquote $(HEADERS_DIR)
 PRODFLAGS= -Wl,--strip-all -O2
 
 SUBMITNAME=c_json_parser
+
+# Shrink-to-fit option (Comment to disable)
+SHTF=-DSHRINK_TO_FIT

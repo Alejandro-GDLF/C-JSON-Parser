@@ -48,89 +48,6 @@ int parse_json(JSONRoot* root, char* string_to_parse)
     return 0;
 }
 
-JSONType get_type(const JSONValue* value)
-{
-    return value->type;
-}
-
-const void* get_value(const JSONValue* value)
-{
-    return &value->value;
-}
-
-const JSONValue* get_key_value(const JSONValue* json_object, const char* field_name, void* error)
-{
-    if( json_object->type != JsonObject ) return NULL;
-
-    for( size_t i = 0; i < json_object->value.json_object.entries_length; i++ )
-    {
-        if (strcmp(json_object->value.json_object.entries[i].name, field_name) == 0 )
-            return &json_object->value.json_object.entries[i].value;
-    }
-
-    return NULL;
-}
-
-const long long* get_integer(const JSONValue* json_object, const char* field_name, void* error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Integer) return NULL;
-
-    return &value->value.integer_value;
-}
-
-const double* get_float(const JSONValue* json_object, const char* field_name, void* error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Float ) return NULL;
-
-    return &value->value.float_value;
-}
-
-const int* get_boolean(const JSONValue* json_object, const char* field_name, void* error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Boolean) return NULL;
-
-    return &value->value.boolean_value;
-}
-
-const char* get_string( const JSONValue* json_object, const char* field_name, void* error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != String ) return NULL;
-
-    return (const char*)&value->value.string_value;
-}
-
-const JSONObject* get_json_object( const JSONValue* json_object, const char* field_name, void *error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != JsonObject) return NULL;
-
-    return &value->value.json_object;
-}
-
-const JSONArray* get_array(const JSONValue* json_object, const char *field_name, void *error)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Array ) return NULL;
-
-    return &value->value.array;
-}
-
 void c_json_free (JSONValue *value)
 {
     if( value->type == JsonObject )
@@ -156,9 +73,20 @@ void c_json_free (JSONValue *value)
 // If defined, all array and json object will reallocate the objects to fit.
 #define SHRINK_TO_FIT
 
-#define ARRAY_OPEN_ENCAPSULATOR '['
-#define STRING_ENCAPSULATOR '"'
-#define ARRAY_CLOSE_ENCAPSULATOR ']'
+#define JSON_ARRAY_OPEN '['
+#define JSON_ARRAY_CLOSE ']'
+
+#define JSON_STRING_OPEN '"'
+#define JSON_STRING_CLOSE '"'
+
+#define JSON_OBJECT_OPEN '{'
+#define JSON_OBJECT_CLOSE '}'
+
+#define JSON_OBJECT_ENTRY_SPACER ':'
+
+#define NULL_CHAR '\0'
+
+#define DECIMAL_SEPARATOR '.'
 
 static int parse(JSONValue* object, char* string_to_parse, char** end_string) 
 {
@@ -172,25 +100,25 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
 
     char c = (*string_to_parse);
 
-    if( c == '"')
+    if( c == JSON_STRING_OPEN)
     {
         object->type = String;
         return parse_string(&object->value.string_value, string_to_parse, end_string);
     }
         
-    else if( c == '[') 
+    else if( c == JSON_ARRAY_OPEN) 
     {
         object->type = Array;
         return parse_array(&object->value.array, string_to_parse, end_string);
     }
 
-    else if ( c == '{') 
+    else if ( c == JSON_OBJECT_OPEN) 
     {
         object->type = JsonObject;
         return parse_object(&object->value.json_object, string_to_parse, end_string);
     }
         
-    else if( isdigit(c) )
+    else if( isdigit(c) || c == '-')
         return parse_number(object, string_to_parse, end_string);
 
     else if( c == 'f' || c == 't')
@@ -205,7 +133,7 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
         return parse_null(&object->value.is_null, string_to_parse, end_string);
     }
 
-    LOG("Not supported character\n");
+    LOG("Not supported character: %c\n", c);
     return -1;
 }
 
@@ -235,6 +163,7 @@ static int remove_escaped_chars(char* string)
 *//****************************************************************************/
 static int parse_string( char** substring, char* begin_string, char** end_string ) 
 {
+    LOG("Parsing string\n");
     // Pointer passed must be pointing to a STRING_ENCAPSULATOR character
     if( begin_string == NULL ) 
     {
@@ -244,7 +173,7 @@ static int parse_string( char** substring, char* begin_string, char** end_string
 
     while(isspace(*begin_string)) begin_string++; // Feeding white-space chars
 
-    if( (*begin_string) != STRING_ENCAPSULATOR )
+    if( (*begin_string) != JSON_STRING_OPEN )
     {
         LOG("String: No string encapsulator\n");
         return -1;
@@ -254,7 +183,7 @@ static int parse_string( char** substring, char* begin_string, char** end_string
     char* _end_string = begin_string;
     do
     {
-        _end_string = strchr(_end_string + 1, (int) STRING_ENCAPSULATOR );
+        _end_string = strchr(_end_string + 1, (int) JSON_STRING_OPEN );
         if( _end_string == NULL )
         {
             LOG("String: Malformed string\n");
@@ -293,8 +222,6 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
     char* next = begin_item;
     while( isspace(*next) ) next++;
 
-    LOG("JSON Item: Stopped at char %c\n", *next);
-
     if( parse_string(&(json_item->name), next, &next ) == -1 ) 
     {
         LOG("JSON item: Can't parse string\n");
@@ -302,6 +229,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
     }
 
     while( isspace(*next) ) next++;
+
     if( *next != ':' )
     {
         LOG("Malformed JSON item\n");
@@ -329,6 +257,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
 
 static int parse_object( JSONObject* object, char* begin_item, char** end_item ) 
 {
+    LOG("Parsing JSON object\n");
     // Not a JSON object
     if( *begin_item != '{') 
     {
@@ -390,6 +319,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     if( *next != '}' )
     {
         LOG("Not final object. Malformed\n");
+        c_json_free(object);
         return -1;
     }
 
@@ -422,6 +352,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
  *//***************************************************************************/
 static int parse_array( JSONArray* array, char* string_to_parse, char** end_string ) 
 {
+    LOG("Parsing array\n");
     if( (*string_to_parse) != '[') return -1;
     if( array == NULL ) return -1;
 
@@ -469,20 +400,28 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
 
 static int parse_number(JSONValue* object, char* begin_string, char** end_string) 
 {
-    if( !isdigit(*begin_string) ) return -1;
+    LOG("Parsing number\n");
+    if( !isdigit(*begin_string) && *begin_string != '-' ) return -1;
+    
+    int modifier = 1;
+    if(*begin_string == '-')
+    {
+        modifier = -1;
+        begin_string++;
+    }
 
     object->type = Integer;
 
     size_t i;
-    for( i = 0; isdigit(begin_string[i]) || begin_string[i] == '.'; i++ )
-        if( begin_string[i] == '.' )
+    for( i = 0; isdigit(begin_string[i]) || begin_string[i] == DECIMAL_SEPARATOR; i++ )
+        if( begin_string[i] == DECIMAL_SEPARATOR )
             object->type = Float;
 
     if( object->type == Float )
-        object->value.float_value = strtod(begin_string, NULL);
+        object->value.float_value = strtod(begin_string, NULL) * modifier;
     
     else if( object->type == Integer )
-        object->value.integer_value = strtoll(begin_string, NULL, 10);
+        object->value.integer_value = strtoll(begin_string, NULL, 10) * modifier;
 
     else
         return -1;
@@ -495,6 +434,7 @@ static int parse_number(JSONValue* object, char* begin_string, char** end_string
 
 static int parse_boolean(int* object, char *begin_string, char **end_string) 
 {
+    LOG("Parsing boolean\n");
     if( strncmp(begin_string, "true", 4) == 0) 
     {
         *object = 1;
@@ -518,6 +458,7 @@ static int parse_boolean(int* object, char *begin_string, char **end_string)
 
 static int parse_null(int* object, char* begin_string, char** end_string)
 {
+    LOG("Parsing null\n");
     if( strncmp(begin_string, "null", 4) != 0 )
         return -1;
 

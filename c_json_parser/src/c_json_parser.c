@@ -149,9 +149,6 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
 #define JOBJECT_BUFFER_LENGTH 10
 #endif
 
-// If defined, all array and json object will reallocate the objects to fit.
-#define SHRINK_TO_FIT
-
 #define JSON_ARRAY_OPEN '['
 #define JSON_ARRAY_CLOSE ']'
 
@@ -164,18 +161,9 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
 #define JSON_OBJECT_ENTRY_SPACER ':'
 
 #define NULL_CHAR '\0'
+#define BACKSLASH_CHAR '\\'
 
 #define DECIMAL_SEPARATOR '.'
-
-static void* _get(const JSONValue* json_object, const char *field_name, JSONType type)
-{
-    const JSONValue* value = get_key_value(json_object, field_name, NULL);
-
-    if( value == NULL ) return NULL;
-    if( value->type != JsonObject) return NULL;
-
-    return (void*) &value->value;
-}
 
 static int parse(JSONValue* object, char* string_to_parse, char** end_string) 
 {
@@ -224,6 +212,22 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
     }
 }
 
+static void* _get(const JSONValue* json_object, const char *field_name, JSONType type)
+{
+    const JSONValue* value = get_key_value(json_object, field_name, NULL);
+
+    if( value == NULL ) return NULL;
+    if( value->type != JsonObject) return NULL;
+
+    return (void*) &value->value;
+}
+
+static void consume_blank_char(char** ptr)
+{
+    while(isspace(**ptr))
+        (*ptr)++;
+}
+
 static int remove_escaped_chars(char* string) 
 {
     while( (string = strstr(string, "\\\"")) != NULL )
@@ -257,8 +261,6 @@ static int parse_string( char** substring, char* begin_string, char** end_string
         LOG("String: begin string NULL");
         return -1;
     }
-
-    while(isspace(*begin_string)) begin_string++; // Feeding white-space chars
 
     if( (*begin_string) != JSON_STRING_OPEN )
     {

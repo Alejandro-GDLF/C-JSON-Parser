@@ -135,6 +135,7 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
 #define JSON_OBJECT_CLOSE '}'
 
 #define JSON_OBJECT_ENTRY_SPACER ':'
+#define JSON_OBJECT_ITEM_SPACER ','
 
 #define NULL_CHAR '\0'
 #define BACKSLASH_CHAR '\\'
@@ -315,7 +316,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
 
     *end_item = next;
 
-    if( *next == ';' )
+    if( *next == JSON_OBJECT_ITEM_SPACER )
         (*end_item) += 1;
     
     return 0;
@@ -350,7 +351,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
 
     // Empty JSON Object
     object->entries_length = 0;
-    if( *next == '}' )
+    if( *next == JSON_OBJECT_CLOSE )
         goto finish;
 
     size_t max_length = JOBJECT_BUFFER_LENGTH;
@@ -361,7 +362,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
         return -1;
     }
 
-    while( *next != '}' && *next != '\0' )
+    while( *next != JSON_OBJECT_CLOSE && *next != NULL_CHAR )
     {
         if( object->entries_length >= max_length ) 
         {
@@ -376,13 +377,11 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
             object->entries = new_ptr;
         }
 
-        if( *next == ',') next += 1;
-
         if (parse_item( &object->entries[object->entries_length] , next, &next ) == -1 ) return -1;
         object->entries_length++;
     }
 
-    if( *next != '}' )
+    if( *next != JSON_OBJECT_CLOSE )
     {
         LOG("Not final object. Malformed\n");
         free_j_object(object);

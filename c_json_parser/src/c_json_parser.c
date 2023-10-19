@@ -34,6 +34,7 @@ static int parse_null(int*, char*, char**);
 static void free_j_object(JSONObject*);
 static void free_j_array(JSONArray*);
 static void* _get(const JSONValue*, const char*, JSONType);
+static void consume_blank_char(char**);
 
 //******************************************************************************
 
@@ -86,57 +87,32 @@ const JSONValue* get_key_value(const JSONValue* json_object, const char* field_n
 
 const long long* get_integer(const JSONValue* json_object, const char* field_name, void* error)
 {
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Integer) return NULL;
-
-    return &value->value.integer_value;
+    return (const long long*)_get(json_object, field_name, Integer);
 }
 
 const double* get_float(const JSONValue* json_object, const char* field_name, void* error)
 {
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Float ) return NULL;
-
-    return &value->value.float_value;
+    return (const double*)_get(json_object, field_name, Float);
 }
 
 const int* get_boolean(const JSONValue* json_object, const char* field_name, void* error)
 {
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Boolean) return NULL;
-
-    return &value->value.boolean_value;
+    return (const int*)_get(json_object, field_name, Boolean);
 }
 
 const char* get_string( const JSONValue* json_object, const char* field_name, void* error)
 {
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != String ) return NULL;
-
-    return (const char*)&value->value.string_value;
+    return (const char*)_get(json_object, field_name, String);
 }
 
 const JSONObject* get_json_object( const JSONValue* json_object, const char* field_name, void *error)
 {
-    return (JSONObject*)_get(json_object, field_name, JsonObject);
+    return (const JSONObject*)_get(json_object, field_name, JsonObject);
 }
 
 const JSONArray* get_array(const JSONValue* json_object, const char *field_name, void *error)
 {
-    const JSONValue* value = get_key_value(json_object, field_name, error);
-
-    if( value == NULL ) return NULL;
-    if( value->type != Array ) return NULL;
-
-    return &value->value.array;
+    return (const JSONArray*)_get(json_object, field_name, Array);
 }
 
 //************************** Static functions *********************************
@@ -173,7 +149,7 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
         return -1;
     }
 
-    while( isspace(*string_to_parse) ) string_to_parse++;
+    consume_blank_char(&string_to_parse);
 
     char c = (*string_to_parse);
 
@@ -217,7 +193,7 @@ static void* _get(const JSONValue* json_object, const char *field_name, JSONType
     const JSONValue* value = get_key_value(json_object, field_name, NULL);
 
     if( value == NULL ) return NULL;
-    if( value->type != JsonObject) return NULL;
+    if( value->type != type) return NULL;
 
     return (void*) &value->value;
 }
@@ -309,7 +285,8 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
     }
 
     char* next = begin_item;
-    while( isspace(*next) ) next++;
+    
+    consume_blank_char(&next);
 
     if( parse_string(&(json_item->name), next, &next ) == -1 ) 
     {
@@ -317,7 +294,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
         return -1;
     }
 
-    while( isspace(*next) ) next++;
+    consume_blank_char(&next);
 
     if( *next != ':' )
     {
@@ -331,7 +308,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
         return -1;
     }
 
-    while( isspace(*next) ) next++;
+    consume_blank_char(&next);
 
     if( end_item == NULL)
         return 0;
@@ -339,7 +316,7 @@ static int parse_item( JSONEntry* json_item, char* begin_item, char** end_item )
     *end_item = next;
 
     if( *next == ';' )
-        *end_item += 1;
+        (*end_item) += 1;
     
     return 0;
 }
@@ -362,7 +339,7 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
     }
 
     char* next = begin_item + 1;
-    while( isspace(*next) ) next++;
+    consume_blank_char(&next);
 
     // Malformed JSON Object
     if( *next == '\0')
@@ -452,7 +429,8 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
 
     char* next = string_to_parse + 1;
 
-    while( isspace(*next) ) next++;
+    consume_blank_char(&next);
+
     if( *next == ']' ) goto finish;
     next--;
 
@@ -469,9 +447,12 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
         }
 
         next++;
-        while( isspace(*next) ) next++;
+
+        consume_blank_char(&next);
+
         if( parse(&array->body[array->length], next, &next) == -1 ) return -1;
-        while( isspace(*next) ) next++;
+        
+        consume_blank_char(&next);
 
         array->length++;
 

@@ -137,6 +137,8 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
 #define JSON_OBJECT_ENTRY_SPACER ':'
 #define JSON_OBJECT_ITEM_SPACER ','
 
+#define JSON_ARRAY_ITEM_SPACER ','
+
 #define NULL_CHAR '\0'
 #define BACKSLASH_CHAR '\\'
 
@@ -417,9 +419,8 @@ static int parse_object( JSONObject* object, char* begin_item, char** end_item )
  *//***************************************************************************/
 static int parse_array( JSONArray* array, char* string_to_parse, char** end_string ) 
 {
-    LOG("Parsing array\n");
-    if( (*string_to_parse) != '[') return -1;
     if( array == NULL ) return -1;
+    if( (*string_to_parse) != JSON_ARRAY_OPEN) return -1;
 
     size_t array_max_length = ARRAY_BUFFER_LENGTH;
     array->length = 0;
@@ -430,10 +431,7 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
 
     consume_blank_char(&next);
 
-    if( *next == ']' ) goto finish;
-    next--;
-
-    do
+    while (*next != NULL_CHAR && *next != JSON_ARRAY_CLOSE)
     {
         if( array->length >= array_max_length ) {
             array_max_length *= 2;
@@ -445,19 +443,17 @@ static int parse_array( JSONArray* array, char* string_to_parse, char** end_stri
             array->body = new_ptr;
         }
 
-        next++;
-
-        consume_blank_char(&next);
+        if(*next == JSON_ARRAY_ITEM_SPACER) 
+            next++;
 
         if( parse(&array->body[array->length], next, &next) == -1 ) return -1;
-        
-        consume_blank_char(&next);
-
         array->length++;
 
-    } while (*next != '\0' && *next != ']');
+        consume_blank_char(&next);
 
-    if( *next != ']' ) return -1;
+    }
+
+    if( *next != JSON_ARRAY_CLOSE ) return -1;
 
     finish:
 

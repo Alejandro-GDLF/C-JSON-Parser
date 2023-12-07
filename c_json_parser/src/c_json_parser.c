@@ -14,10 +14,10 @@
 #include <stdlib.h>
 
 #ifdef DEBUG
-#define LOG(x, ...) printf(x, ##__VA_ARGS__)
-#include <stdio.h>
+    #include <stdio.h>
+    #define LOG(x, ...) printf(x, ##__VA_ARGS__)
 #else
-#define LOG(x, ...)
+    #define LOG(x, ...)
 #endif
 
 #include "c_json_parser.h"
@@ -35,6 +35,9 @@ static void free_j_object(JSONObject*);
 static void free_j_array(JSONArray*);
 static void* _get(const JSONValue*, const char*, JSONType);
 static void consume_blank_char(char**);
+static void c_json_print_object(JSONObject object);
+static void c_json_print_array(JSONArray array);
+static void c_json_print_entry(JSONEntry entry);
 
 //******************************************************************************
 
@@ -50,18 +53,6 @@ int parse_json(JSONRoot* root, char* string_to_parse)
     return 0;
 }
 
-void c_json_free (JSONValue *value)
-{
-    if( value->type == JsonObject )
-        free_j_object(&value->value.json_object);
-
-    else if( value->type == Array )
-        free_j_array(&value->value.array);
-
-    else if (value->type == String )
-        free((void*)value->value.string_value);
-}
-
 JSONType get_type(const JSONValue* value)
 {
     return value->type;
@@ -69,17 +60,33 @@ JSONType get_type(const JSONValue* value)
 
 const void* get_value(const JSONValue* value)
 {
-    return &value->value;
+    return (void*) &value->is_null;
+}
+
+void c_json_free (JSONValue *value)
+{
+    switch(get_type(value))
+    {
+        case JSON_OBJECT:
+            free_j_object(&value->json_object);
+            break;
+        case JSON_STRING:
+            free((void*)value->string_value);
+            break;
+        case JSON_ARRAY:
+            free_j_array(&value->array);
+            break;
+    }
 }
 
 const JSONValue* get_key_value(const JSONValue* json_object, const char* field_name, void* error)
 {
-    if( json_object->type != JsonObject ) return NULL;
+    if( json_object->type != JSON_OBJECT ) return NULL;
 
-    for( size_t i = 0; i < json_object->value.json_object.entries_length; i++ )
+    for( size_t i = 0; i < json_object->json_object.entries_length; i++ )
     {
-        if (strcmp(json_object->value.json_object.entries[i].name, field_name) == 0 )
-            return &json_object->value.json_object.entries[i].value;
+      if (strcmp(json_object->json_object.entries[i].name, field_name) == 0 )
+        return &json_object->json_object.entries[i].value;
     }
 
     return NULL;
@@ -87,32 +94,59 @@ const JSONValue* get_key_value(const JSONValue* json_object, const char* field_n
 
 const long long* get_integer(const JSONValue* json_object, const char* field_name, void* error)
 {
-    return (const long long*)_get(json_object, field_name, Integer);
+    return (const long long*)_get(json_object, field_name, JSON_INTEGER);
 }
 
 const double* get_float(const JSONValue* json_object, const char* field_name, void* error)
 {
-    return (const double*)_get(json_object, field_name, Float);
+    return (const double*)_get(json_object, field_name, JSON_FLOAT);
 }
 
 const int* get_boolean(const JSONValue* json_object, const char* field_name, void* error)
 {
-    return (const int*)_get(json_object, field_name, Boolean);
+    return (const int*)_get(json_object, field_name, JSON_BOOLEAN);
 }
 
 const char* get_string( const JSONValue* json_object, const char* field_name, void* error)
 {
-    return (const char*)_get(json_object, field_name, String);
+    return (const char*)_get(json_object, field_name, JSON_STRING);
 }
 
 const JSONObject* get_json_object( const JSONValue* json_object, const char* field_name, void *error)
 {
-    return (const JSONObject*)_get(json_object, field_name, JsonObject);
+    return (const JSONObject*)_get(json_object, field_name, JSON_OBJECT);
 }
 
 const JSONArray* get_array(const JSONValue* json_object, const char *field_name, void *error)
 {
-    return (const JSONArray*)_get(json_object, field_name, Array);
+    return (const JSONArray*)_get(json_object, field_name, JSON_ARRAY);
+}
+
+void c_json_print(JSONValue *root)
+{
+    switch(get_type(root))
+    {
+        case JSON_OBJECT:
+            c_json_print_object(root->json_object);
+            break;
+        case JSON_STRING:
+            printf("\"%s\"", root->string_value);
+            break;
+        case JSON_INTEGER:
+            printf("%d", root->integer_value);
+            break;
+        case JSON_FLOAT:
+            printf("%f", root->float_value);
+            break;
+        case JSON_BOOLEAN:
+            printf("%d", root->boolean_value);
+            break;
+        case JSON_ARRAY:
+            c_json_print_array(root->array);
+            break;
+        case JSON_NULL:
+            printf("null");
+    }
 }
 
 //************************** Static functions *********************************
@@ -159,28 +193,28 @@ static int parse(JSONValue* object, char* string_to_parse, char** end_string)
     switch(c) 
     {
         case JSON_STRING_OPEN:
-            object->type = String;
-            return parse_string(&object->value.string_value, string_to_parse, end_string);
+            object->type = JSON_STRING;
+            return parse_string(&object->string_value, string_to_parse, end_string);
 
         case JSON_ARRAY_OPEN:
-            object->type = Array;
-            return parse_array(&object->value.array, string_to_parse, end_string);
+            object->type = JSON_ARRAY;
+            return parse_array(&object->array, string_to_parse, end_string);
         
         case JSON_OBJECT_OPEN:
-            object->type = JsonObject;
-            return parse_object(&object->value.json_object, string_to_parse, end_string);
+            object->type = JSON_OBJECT;
+            return parse_object(&object->json_object, string_to_parse, end_string);
         
         case '-':
             return parse_number(object, string_to_parse, end_string);
         
         case 'f':
         case 't':
-            object->type = Boolean;
-            return parse_boolean(&object->value.boolean_value, string_to_parse, end_string);
+            object->type = JSON_BOOLEAN;
+            return parse_boolean(&object->boolean_value, string_to_parse, end_string);
 
         case 'n':
-            object->type = Null;
-            return parse_null(&object->value.is_null, string_to_parse, end_string);
+            object->type = JSON_NULL;
+            return parse_null(&object->is_null, string_to_parse, end_string);
 
         default:
             if (isdigit(c))
@@ -198,7 +232,7 @@ static void* _get(const JSONValue* json_object, const char *field_name, JSONType
     if( value == NULL ) return NULL;
     if( value->type != type) return NULL;
 
-    return (void*) &value->value;
+    return (void*) &value->string_value;
 }
 
 static void consume_blank_char(char** ptr)
@@ -475,18 +509,18 @@ static int parse_number(JSONValue* object, char* begin_string, char** end_string
         begin_string++;
     }
 
-    object->type = Integer;
+    object->type = JSON_INTEGER;
 
     size_t i;
     for( i = 0; isdigit(begin_string[i]) || begin_string[i] == DECIMAL_SEPARATOR; i++ )
         if( begin_string[i] == DECIMAL_SEPARATOR )
-            object->type = Float;
+            object->type = JSON_FLOAT;
 
-    if( object->type == Float )
-        object->value.float_value = strtod(begin_string, NULL) * modifier;
+    if( object->type == JSON_FLOAT )
+        object->float_value = strtod(begin_string, NULL) * modifier;
     
-    else if( object->type == Integer )
-        object->value.integer_value = strtoll(begin_string, NULL, 10) * modifier;
+    else if( object->type == JSON_INTEGER )
+        object->integer_value = strtoll(begin_string, NULL, 10) * modifier;
 
     else
         return -1;
@@ -552,4 +586,42 @@ static void free_j_array(JSONArray *array)
         c_json_free(&array->body[i]);
 
     free(array->body);
+}
+
+static void c_json_print_object(JSONObject object) 
+{
+    printf("{\n");
+    for(size_t i = 0; i < object.entries_length; ++i)
+    {
+        c_json_print_entry(object.entries[i]);
+
+        if(i + 1 < object.entries_length )
+            printf(",");
+        
+        printf("\n");
+    }
+
+    printf("}\n");
+}
+
+static void c_json_print_entry(JSONEntry entry) 
+{
+    printf("\"%s\" : ", entry.name);
+    c_json_print(&entry.value);
+}
+
+static void c_json_print_array(void *out, JSONArray array)
+{
+    printf("[\n");
+    for(size_t i = 0; i < array.length; ++i)
+    {
+        c_json_print(array.body + i);
+
+        if(i + 1 < array.length )
+            printf(",");
+        
+        printf("\n");
+    }
+
+    printf("]\n");
 }

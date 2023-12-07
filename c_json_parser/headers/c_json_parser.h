@@ -139,4 +139,12 @@ const JSONArray* get_array(const JSONValue* json_object, const char *field_name,
  */
 void c_json_free (JSONValue *root);
 
+// Printing objects
+/**
+ * @brief Prints a JSON.
+ * 
+ * @param[in] root JSON object to print.
+*/
+void c_json_print(JSONValue *root);
+
 #endif

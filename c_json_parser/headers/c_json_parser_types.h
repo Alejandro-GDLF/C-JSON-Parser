@@ -32,13 +32,13 @@ typedef enum   JSONType    JSONType;
  */
 enum JSONType
 {
-    JsonObject,
-    String,
-    Integer,
-    Float,
-    Boolean,
-    Array,
-    Null
+    JSON_OBJECT,
+    JSON_STRING,
+    JSON_INTEGER,
+    JSON_FLOAT,
+    JSON_BOOLEAN,
+    JSON_ARRAY,
+    JSON_NULL
 };
 
 /**
@@ -47,9 +47,9 @@ enum JSONType
  */
 struct JSONArray 
 {
-    size_t              length;
     JSONValue           *body;
-};
+    size_t              length;
+} __attribute__((packed));
 
 /**
  * @brief Array of entries.
@@ -57,8 +57,8 @@ struct JSONArray
  */
 struct JSONObject
 {
-    size_t              entries_length;
     JSONEntry           *entries;
+    size_t              entries_length;
 };
 
 /**
@@ -67,7 +67,6 @@ struct JSONObject
  */
 struct JSONValue 
 {
-    JSONType            type;
     union {
         JSONArray   array;
         double      float_value;
@@ -76,7 +75,8 @@ struct JSONValue
         char        *string_value;
         int         boolean_value;
         int         is_null;
-    }                   value;
+    };
+    JSONType            type;
 };
 
 /**
@@ -85,8 +85,8 @@ struct JSONValue
  */
 struct JSONEntry
 {
-    char                *name;
     JSONValue           value;
+    char                *name;
 };
 
 #endif

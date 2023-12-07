@@ -21,7 +21,7 @@ int main()
         return -1;
     }
 
-    for( size_t i = 0; i < root.value.json_object.entries_length; i++ )
+    for( size_t i = 0; i < root.json_object.entries_length; i++ )
     {
         if(strcmp(root.value.json_object.entries[i].name, names[i]) != 0 )
         {
